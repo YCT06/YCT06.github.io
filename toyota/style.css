@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family:Helvetica,Verdana,Arial,"\5FAE\8EDF\6B63\9ED1\9AD4","Microsoft JhengHei","\5137\9ED1 Pro","LiHei Pro",sans-serif;;
+}
+
+.advantage {
+    width: 960px;
+    margin:0 auto;
+    margin-bottom: 75px;
+    padding-top: 36px;
+    position: relative;
+}
+.color_block {
+    position: absolute;
+    width: 439px;
+    right: 0;
+    margin-top: 30px;
+}
+.color_block::before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: 290px;
+    background-color: #eeeeee;
+    opacity: 0.6;
+
+}
+.title_space {
+    display: flex;
+}
+.title {
+    display: flex;
+    align-items: center;
+    width: 355px;
+    background-color: #BB0404;
+    color: white;
+}
+.number {
+    writing-mode:vertical-lr;
+    font-size: 100px;
+}
+.text {
+    font-size: 50px;
+
+}
+
+.info_and_img {
+    display: flex;
+    position: relative; 
+}
+
+.info {
+    width: 355px;
+    background-color: black;
+    color: white;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 30px 20px 50px;
+    line-height: 2em;
+    margin-bottom: 150px;
+}
+
+.info_first_line {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.info_other_line {
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.img {
+    position: absolute;
+    top: 0;
+    left: 200px;
+}
+
+.revolution {
+    width: 682px;
+    background-color: #EEEEEE;
+    position: relative;
+    left: 40px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.revolution h3 {
+    line-height: 2em;
+    color: #BB0404;
+    font-weight: bolder;
+}
+.revolution h3::after {
+    content: "";
+    display: inline-block;
+    width: 70%;
+    height: 1px;
+    background-color: #BB0404;
+    margin-left: 5px; 
+    vertical-align: middle;
+}
+
+.revolution_list li {
+    display: inline-block;
+    list-style: none;
+    background-color: black;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 10%;
+}
+
+.revolution_list div {
+    color: #6E6E6E;
+    font-weight: 500;
+    margin: 5px 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.revolution_list div::before {
+    content: "\25AA"; 
+    color: #BB0404;
+    margin: 0px 10px; 
+}
+
+.advantage-2 .color_block{
+    width: 518px;
+    margin-right: 164px;
+}
+.advantage-2 .color_block:before {
+    padding-top: 413px;
+}
+.advantage-2 .title_space{
+    flex-direction: row-reverse;
+}
+.advantage-2 .title {
+    flex-direction: row-reverse;
+    z-index: 1;
+}
+.advantage-2 .info_and_img {
+    flex-direction: row-reverse;
+}
+.advantage-2 .img {
+    left: 0;
+}
+.advantage-2 .revolution {
+    left: 278px;
+}
+
+.advantage:nth-child(3) .info {
+    margin-bottom: 114px;
+}
+
+.advantage:nth-child(4) .info {
+    margin-bottom: 78px;
+}
