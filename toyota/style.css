@@ -59,7 +59,7 @@
     box-sizing: border-box;
     padding: 30px 20px 50px;
     line-height: 2em;
-    margin-bottom: 150px;
+    position: absolute;
 }
 
 .info_first_line {
@@ -73,7 +73,7 @@
 }
 
 .img {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 200px;
 }
@@ -85,6 +85,7 @@
     left: 40px;
     box-sizing: border-box;
     padding: 20px;
+    top: -45px;
 }
 
 .revolution h3 {
@@ -143,7 +144,7 @@
     flex-direction: row-reverse;
 }
 .advantage-2 .img {
-    left: 0;
+    left: -265px;
 }
 .advantage-2 .revolution {
     left: 278px;
