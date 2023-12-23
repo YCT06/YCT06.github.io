@@ -69,23 +69,23 @@
   <div id="game-container">
     <h1>猜數字遊戲-練習版</h1>
     <div>
-      <input type="button" class="btnGroup" value="1" onclick="appendToGuess('1')" />
-      <input type="button" class="btnGroup" value="2" onclick="appendToGuess('2')" />
-      <input type="button" class="btnGroup" value="3" onclick="appendToGuess('3')" />
-      <input type="button" class="btnGroup" value="4" onclick="appendToGuess('4')" />
-      <input type="button" class="btnGroup" value="5" onclick="appendToGuess('5')" />
-      <input type="button" class="btnGroup" value="6" onclick="appendToGuess('6')" />
-      <input type="button" class="btnGroup" value="7" onclick="appendToGuess('7')" />
-      <input type="button" class="btnGroup" value="8" onclick="appendToGuess('8')" />
-      <input type="button" class="btnGroup" value="9" onclick="appendToGuess('9')" />
-      <input type="button" class="btnGroup" value="0" onclick="appendToGuess('0')" />
+      <input type="button" class="btnGroup" value="1" />
+      <input type="button" class="btnGroup" value="2" />
+      <input type="button" class="btnGroup" value="3" />
+      <input type="button" class="btnGroup" value="4" />
+      <input type="button" class="btnGroup" value="5" />
+      <input type="button" class="btnGroup" value="6" />
+      <input type="button" class="btnGroup" value="7" />
+      <input type="button" class="btnGroup" value="8" />
+      <input type="button" class="btnGroup" value="9" />
+      <input type="button" class="btnGroup" value="0" />
     </div>
 
     <input type="text" id="guess-input" />
-    <input type="button" value="確認" onclick="checkGuess()" />
-    <input type="button" value="清除" onclick="clearInput()" />
-    <input type="button" value="看答案" onclick="watchAnswer()" />
-    <input type="button" value="重置遊戲" onclick="resetGame()" />
+    <input type="button" value="確認" id="confirm-button" />
+    <input type="button" value="清除" id="clear-button" />
+    <input type="button" value="看答案" id="watch-answer-button" />
+    <input type="button" value="重置遊戲" id="reset-button" />
     <p id="result">Fighting</p>
     <p id="range">請輸入1~100之間的數字</p>
   </div>
@@ -120,18 +120,16 @@
 
       if (isNaN(userGuess) || !Number.isInteger(userGuess)) {
         resultMessage.textContent = `請輸入整數數字`;
-        clearInput()
-      }
-      else if (userGuess < minRange || userGuess > maxRange) {
+        clearInput();
+      } else if (userGuess < minRange || userGuess > maxRange) {
         resultMessage.textContent = `請輸入有效範圍之間的整數數字`;
-        clearInput()
-      }
-      else {
+        clearInput();
+      } else {
         attempts++;
 
         if (userGuess === targetNumber) {
           resultMessage.textContent = `恭喜你猜對了！共猜了${attempts}次`;
-          clearInput()
+          clearInput();
         } else {
           resultMessage.textContent = userGuess > targetNumber ? '猜小一點' : '猜大一點';
           // 更新範圍
@@ -141,7 +139,7 @@
             maxRange = userGuess - 1;
           }
           updateRangeMessage();
-          clearInput()
+          clearInput();
         }
       }
     }
@@ -156,8 +154,22 @@
     }
 
     function resetGame() {
-      location.reload()
+      location.reload();
     }
+
+    // 添加事件監聽器
+    document.getElementById('confirm-button').addEventListener('click', checkGuess);
+    document.getElementById('clear-button').addEventListener('click', clearInput);
+    document.getElementById('watch-answer-button').addEventListener('click', watchAnswer);
+    document.getElementById('reset-button').addEventListener('click', resetGame);
+
+    // 添加事件監聽器到數字按鈕
+    const numberButtons = document.querySelectorAll('.btnGroup');
+    numberButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        appendToGuess(button.value);
+      });
+    });
 
     updateRangeMessage();
   </script>
