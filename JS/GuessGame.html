@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GuessGame</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+
+      font-family: Microsoft JhengHei, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+
+      background-image:
+        linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5));
+      background-size: cover;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btnGroup {
+      margin: 10px;
+    }
+
+    .btnGroup {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      background-color: rgb(192, 255, 217);
+      border-radius: 50%;
+    }
+
+    .btnGroup:hover {
+      background-color: rgb(0, 128, 102);
+      border-radius: 50%;
+      color: aliceblue;
+    }
+
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+      margin-right: 8px;
+      text-align: center;
+    }
+
+    #result {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    #feedback {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game-container">
+    <h1>猜數字遊戲-練習版</h1>
+    <div>
+      <input type="button" class="btnGroup" value="1" onclick="appendToGuess('1')" />
+      <input type="button" class="btnGroup" value="2" onclick="appendToGuess('2')" />
+      <input type="button" class="btnGroup" value="3" onclick="appendToGuess('3')" />
+      <input type="button" class="btnGroup" value="4" onclick="appendToGuess('4')" />
+      <input type="button" class="btnGroup" value="5" onclick="appendToGuess('5')" />
+      <input type="button" class="btnGroup" value="6" onclick="appendToGuess('6')" />
+      <input type="button" class="btnGroup" value="7" onclick="appendToGuess('7')" />
+      <input type="button" class="btnGroup" value="8" onclick="appendToGuess('8')" />
+      <input type="button" class="btnGroup" value="9" onclick="appendToGuess('9')" />
+      <input type="button" class="btnGroup" value="0" onclick="appendToGuess('0')" />
+    </div>
+
+    <input type="text" id="guess-input" />
+    <input type="button" value="確認" onclick="checkGuess()" />
+    <input type="button" value="清除" onclick="clearInput()" />
+    <input type="button" value="看答案" onclick="watchAnswer()" />
+    <input type="button" value="重置遊戲" onclick="resetGame()" />
+    <p id="result">Fighting</p>
+    <p id="range">請輸入1~100之間的數字</p>
+  </div>
+
+  <script>
+    let minRange = 1;
+    let maxRange = 100;
+    let targetNumber = getRandomIntInclusive(1, 100)
+    let attempts = 0;
+
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function updateRangeMessage() {
+      const rangeMessage = document.getElementById('range');
+      rangeMessage.textContent = `請輸入${minRange}~${maxRange}之間的整數數字`;
+    }
+
+    function appendToGuess(value) {
+      const guessInput = document.getElementById('guess-input');
+      guessInput.value += value;
+    }
+
+    function checkGuess() {
+      const guessInput = document.getElementById('guess-input');
+      const resultMessage = document.getElementById('result');
+
+      const userGuess = parseFloat(guessInput.value);
+
+      if (isNaN(userGuess) || !Number.isInteger(userGuess)) {
+        resultMessage.textContent = `請輸入整數數字`;
+        clearInput()
+      }
+      else if (userGuess < minRange || userGuess > maxRange) {
+        resultMessage.textContent = `請輸入有效範圍之間的整數數字`;
+        clearInput()
+      }
+      else {
+        attempts++;
+
+        if (userGuess === targetNumber) {
+          resultMessage.textContent = `恭喜你猜對了！共猜了${attempts}次`;
+          clearInput()
+        } else {
+          resultMessage.textContent = userGuess > targetNumber ? '猜小一點' : '猜大一點';
+          // 更新範圍
+          if (userGuess < targetNumber) {
+            minRange = userGuess + 1;
+          } else {
+            maxRange = userGuess - 1;
+          }
+          updateRangeMessage();
+          clearInput()
+        }
+      }
+    }
+
+    function clearInput() {
+      const guessInput = document.getElementById('guess-input');
+      guessInput.value = '';
+    }
+
+    function watchAnswer() {
+      alert(`答案是 : ${targetNumber}`);
+    }
+
+    function resetGame() {
+      location.reload()
+    }
+
+    updateRangeMessage();
+  </script>
+</body>
+
+</html>
