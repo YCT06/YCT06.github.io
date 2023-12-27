@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜數字遊戲</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .result1 {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: white;
+            background-color: rgb(210, 74, 74);
+            font-weight: bold;
+        }
+
+        .result2 {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: white;
+            background-color: rgb(59, 195, 59);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="w-75 mx-auto mb-3">
+        <div class="btn-group w-100" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-primary" id="startBtn">開始</button>
+            <button type="button" class="btn btn-outline-primary" id="resetBtn">放棄重來</button>
+            <button type="button" class="btn btn-outline-primary" id="watchAnswerBtn">看答案</button>
+        </div>
+    </div>
+
+    <ul id="gameHistory" class="list-group w-75 mx-auto mb-3">
+        <li class="list-group-item">遊戲歷程</li>
+    </ul>
+
+    <div class="input-group w-75 mx-auto">
+        <input id="guessInput" type="text" class="form-control" placeholder="請輸入四個不重複的數字" aria-label="Recipient's username"
+            aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="checkGuessBtn">猜!!!</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let answer = [];
+
+        function generateUniqueNumbers() {
+            let pool = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            for (let i = 0; i < 4; i++) {
+                let index = Math.floor(Math.random() * pool.length);
+                answer.push(pool[index]);
+                pool.splice(index, 1);
+            }
+        }
+
+        function startGame() {
+            // 清空答案
+            answer = [];
+            // 生成新的答案
+            generateUniqueNumbers();
+            // 清空遊戲歷程
+            document.getElementById("gameHistory").innerHTML = '<li class="list-group-item">遊戲歷程</li>';
+            //添加初始事件監聽器,讓其他按鈕啟動
+            document.getElementById("resetBtn").addEventListener("click", resetGame);
+            document.getElementById("watchAnswerBtn").addEventListener("click", watchAnswer);
+            document.getElementById("checkGuessBtn").addEventListener("click", checkGuess);
+        }
+
+        function resetGame() {
+            watchAnswer();
+            startGame();
+        }
+
+        function watchAnswer() {
+            alert(`答案是 : ${answer.join('')}`);
+        }
+
+        function checkGuess() {
+            let currentValue = document.getElementById("guessInput").value;
+
+            let pValue = parseInt(currentValue);
+            if (isNaN(pValue) || pValue < 1000 || pValue > 9999) {
+                alert("請輸入正確格式的四位數字！");
+                return;
+            }
+            //正規表達式 - 我太難了
+            // if (!/^\d{4}$/.test(currentValue)) {
+            //     alert("請輸入正確格式的四位數字！");
+            //     return;
+            // }
+
+            if (hasDuplicate(currentValue)) {
+                alert("請輸入不重複的四位數字！");
+                return;
+            }
+
+            let a = 0;
+            let b = 0;
+
+            currentValue.split("").forEach((val, id) => {
+                let index = answer.indexOf(val);
+                if (index != -1) {
+                    if (index == id) {
+                        a++;
+                    } else {
+                        b++;
+                    }
+                }
+            });
+
+            let result = `${a}A${b}B`;
+
+            if (a == 4) {
+                document.getElementById("gameHistory").innerHTML += `<li class="list-group-item"> <span class="result2">${result}</span> - ${currentValue} - 恭喜你猜對了！</li>`; //遊戲歷程添加-綠背景
+                document.getElementById("guessInput").value = ""; // 清空輸入框
+            }
+            else {
+                document.getElementById("gameHistory").innerHTML += `<li class="list-group-item"> <span class="result1">${result}</span> - ${currentValue}</li>`; //遊戲歷程添加-紅背景
+                document.getElementById("guessInput").value = ""; // 清空輸入框
+            }
+        }
+
+
+        //燒毀
+        // function hasDuplicate(str) {
+        //     for (let i = 0; i < str.length; i++) {
+        //         for (let j = i + 1; j < str.length; j++) {
+        //             if (str[i] === str[j]) {
+        //                 return true; // 發現重複的數字，返回 true
+        //             }
+        //         }
+        //     }
+        //     return false; // 所有數字都不重複，返回 false
+        // }
+
+        //馬德set這什麼神奇東西!?
+        function hasDuplicate(str) {
+            return (new Set(str)).size !== str.length;
+        }
+
+        // "開始"按鈕添加事件監聽器
+        document.getElementById("startBtn").addEventListener("click", startGame);
+
+    </script>
+</body>
+
+</html>
