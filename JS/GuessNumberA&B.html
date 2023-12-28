@@ -43,8 +43,8 @@
     </ul>
 
     <div class="input-group w-75 mx-auto">
-        <input id="guessInput" type="text" class="form-control" placeholder="請輸入四個不重複的數字" aria-label="Recipient's username"
-            aria-describedby="button-addon2">
+        <input id="guessInput" type="text" class="form-control" placeholder="請輸入四個不重複的數字"
+            aria-label="Recipient's username" aria-describedby="button-addon2">
         <button class="btn btn-outline-secondary" type="button" id="checkGuessBtn">猜!!!</button>
     </div>
 
@@ -89,16 +89,11 @@
         function checkGuess() {
             let currentValue = document.getElementById("guessInput").value;
 
-            let pValue = parseInt(currentValue);
-            if (isNaN(pValue) || pValue < 1000 || pValue > 9999) {
+            //(by ChatGPT)正規表達式 - 太難了, 這都是個啥 
+            if (!/^\d{4}$/.test(currentValue)) {
                 alert("請輸入正確格式的四位數字！");
                 return;
             }
-            //正規表達式 - 我太難了
-            // if (!/^\d{4}$/.test(currentValue)) {
-            //     alert("請輸入正確格式的四位數字！");
-            //     return;
-            // }
 
             if (hasDuplicate(currentValue)) {
                 alert("請輸入不重複的四位數字！");
@@ -144,7 +139,7 @@
         //     return false; // 所有數字都不重複，返回 false
         // }
 
-        //馬德set這什麼神奇東西!?
+        //WHAT? set這什麼神奇東西!?
         function hasDuplicate(str) {
             return (new Set(str)).size !== str.length;
         }
