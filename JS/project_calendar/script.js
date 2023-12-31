@@ -12,13 +12,21 @@ const cyear = document.getElementById("calendar-year");
 const saveButton = document.getElementById("saveButton");
 const deleteButton = document.getElementById("deleteButton");
 
-
 // 拿到當前的年分日期
 let my_date = new Date();
 let my_year = my_date.getFullYear();
 let my_month = my_date.getMonth();
 let my_day = my_date.getDate();
 
+// 清除表單資料
+function clearAll() {   
+    document.getElementById('eventId').value = '';
+    document.getElementById('eventColor').value = '#ff0000';
+    document.getElementById('eventDate').value = '';
+    document.getElementById('eventTime').value = '';
+    document.getElementById('eventTitle').value = '';
+    document.getElementById('eventDescription').value = '';
+}
 // 判斷閏年與獲取該月總天數
 function daysMonth(month, year) {
     // 如果年份能被4整除
@@ -63,9 +71,10 @@ function refreshDate() {
         } else {
             myclass = " class='daystocome'"; // 當該日期在今天之後時，以深灰字體顯示
         }
+        const day = i < 10 ? `0${i}` : i;
         str += `
-            <li data-day="${i}" data-date="${my_year}-${my_month + 1}-${i}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <div${myclass}>${i}</div>
+            <li data-day="${i}">
+                <div${myclass} data-date="${my_year}-${my_month + 1}-${day}" data-bs-toggle="modal" data-bs-target="#exampleModal">${i}</div>
                 <div class='day-content'></div>
             </li>`;// 創建日期節點
     }
@@ -124,7 +133,7 @@ saveButton.addEventListener('click', function () {
         };
 
         eventData.events.push(newEvent);
-    } else { 
+    } else {
         // 編輯現有事件
         const foundEvent = eventData.events.find((eData) => {
             return eData.id == eventId;
@@ -134,7 +143,6 @@ saveButton.addEventListener('click', function () {
         foundEvent.time = eventTime;
         foundEvent.title = eventTitle;
         foundEvent.description = eventDescription;
-        console.log(eventData.events);
     }
 
     // 保存更新後的數據到 localStorage
@@ -157,14 +165,14 @@ deleteButton.addEventListener('click', function () {
             return eData.id != eventId;
         });
         eventData.events = filteredEvents;
+        clearAll();
         saveEventData(eventData);
     } else {
-        // 沒有ID存在時的情況
+        // 沒有ID存在時的情況        
         alert("資料不存在");
     }
-    
     updateCalendar();
-    
+
     // 模擬使用者點了右上角的XX,(關閉視窗)
     document.getElementById('closeButton').click();
 });
@@ -208,44 +216,47 @@ function updateCalendar() {
             dataDay.innerHTML = `
                 <span class="color-mark" style="background-color: ${event.color};"></span>
                 <span class="event-title">${event.title}</span>`;
-            dayContent.append(dataDay);           
+            dayContent.append(dataDay);
         }
+    });
+
+    //讀取localStorage的檔案, 呈現在新增、修改行程畫面
+    const events = document.querySelectorAll(".event");
+    events.forEach(event => {
+        event.addEventListener('click', function (e) {
+            // 用事件的id來搜索存檔
+            const eventID = e.currentTarget.id
+            const storedObject = localStorage.getItem("calendarEvents");
+
+            if (storedObject) {
+                const dataObject = JSON.parse(storedObject);
+                const foundEvent = dataObject.events.find((eData) => {
+                    return eData.id == eventID;
+                });
+                // 獲取表單數據
+                document.getElementById('eventId').value = foundEvent.id;
+                // console.log(document.getElementById('eventId').value);
+                document.getElementById('eventColor').value = foundEvent.color;
+                document.getElementById('eventDate').value = foundEvent.date;
+                document.getElementById('eventTime').value = foundEvent.time;
+                document.getElementById('eventTitle').value = foundEvent.title;
+                document.getElementById('eventDescription').value = foundEvent.description;
+            } else {
+                console.log("No object found for event ID");
+            }
+        });
     });
 }
 updateCalendar();
 
-//讀取localStorage的檔案, 呈現在新增、修改行程畫面
-const events = document.querySelectorAll(".event");
-events.forEach(event => {
-    event.addEventListener('click', function (e) {
-        // 用事件的id來搜索存檔
-        const eventID = e.currentTarget.id
-        const storedObject = localStorage.getItem("calendarEvents");
 
-        if (storedObject) {
-            const dataObject = JSON.parse(storedObject);
-            const foundEvent = dataObject.events.find((eData) => {
-                return eData.id == eventID;
-            });
-            // 獲取表單數據
-            document.getElementById('eventId').value = foundEvent.id;
-            // console.log(document.getElementById('eventId').value);
-            document.getElementById('eventColor').value = foundEvent.color;
-            document.getElementById('eventDate').value = foundEvent.date;
-            document.getElementById('eventTime').value = foundEvent.time;
-            document.getElementById('eventTitle').value = foundEvent.title;
-            document.getElementById('eventDescription').value = foundEvent.description;
-        } else {
-            console.log("No object found for event ID");
-        }
-    });
-});
 
 // 讓每個格子的日期, 自動填進表單
-const calendarDays = document.querySelectorAll(`[data-day]`);
+const calendarDays = document.querySelectorAll(`[data-date]`);
 calendarDays.forEach(calendarDay => {
     calendarDay.addEventListener('click', function (e) {
         const targetDate = e.currentTarget.getAttribute("data-date");
+        clearAll();
         document.getElementById('eventDate').value = targetDate;
     });
 });
