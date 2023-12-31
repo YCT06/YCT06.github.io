@@ -19,7 +19,7 @@ let my_month = my_date.getMonth();
 let my_day = my_date.getDate();
 
 // 清除表單資料
-function clearAll() {   
+function clearAll() {
     document.getElementById('eventId').value = '';
     document.getElementById('eventColor').value = '#ff0000';
     document.getElementById('eventDate').value = '';
@@ -72,9 +72,11 @@ function refreshDate() {
             myclass = " class='daystocome'"; // 當該日期在今天之後時，以深灰字體顯示
         }
         const day = i < 10 ? `0${i}` : i;
+        const month = my_month + 1;
+        const m = month < 10 ? `0${month}` : month;
         str += `
-            <li data-day="${i}">
-                <div${myclass} data-date="${my_year}-${my_month + 1}-${day}" data-bs-toggle="modal" data-bs-target="#exampleModal">${i}</div>
+            <li data-date="${my_year}-${m}-${day}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div${myclass}>${i}</div>
                 <div class='day-content'></div>
             </li>`;// 創建日期節點
     }
@@ -94,6 +96,7 @@ prev.addEventListener("click", function (e) {
         my_year--;
     }
     refreshDate();
+    updateCalendar();
 });
 
 next.addEventListener("click", function (e) {
@@ -104,6 +107,7 @@ next.addEventListener("click", function (e) {
         my_year++;
     }
     refreshDate();
+    updateCalendar();
 });
 
 // 事件監聽-新增表單數據到JSON
@@ -172,7 +176,6 @@ deleteButton.addEventListener('click', function () {
         alert("資料不存在");
     }
     updateCalendar();
-
     // 模擬使用者點了右上角的XX,(關閉視窗)
     document.getElementById('closeButton').click();
 });
@@ -204,8 +207,7 @@ function updateCalendar() {
 
     // 遍歷事件，將它們添加到相應的日期格子上
     eventData.events.forEach(event => {
-        const eventDate = new Date(event.date);
-        const dayElement = document.querySelector(`[data-day='${eventDate.getDate()}']`);
+        const dayElement = document.querySelector(`[data-date="${event.date}"]`);
         if (dayElement) {
             const dayContent = dayElement.querySelector('.day-content');
             const dataDay = document.createElement("div");
@@ -227,7 +229,6 @@ function updateCalendar() {
             // 用事件的id來搜索存檔
             const eventID = e.currentTarget.id
             const storedObject = localStorage.getItem("calendarEvents");
-
             if (storedObject) {
                 const dataObject = JSON.parse(storedObject);
                 const foundEvent = dataObject.events.find((eData) => {
@@ -244,20 +245,18 @@ function updateCalendar() {
             } else {
                 console.log("No object found for event ID");
             }
+            e.stopPropagation();
+        });
+    });
+
+    // 讓每個格子的日期, 自動填進表單
+    const calendarDays = document.querySelectorAll(`[data-date]`);
+    calendarDays.forEach(calendarDay => {
+        calendarDay.addEventListener('click', function (e) {
+            const targetDate = e.currentTarget.getAttribute("data-date");
+            clearAll();
+            document.getElementById('eventDate').value = targetDate;
         });
     });
 }
 updateCalendar();
-
-
-
-// 讓每個格子的日期, 自動填進表單
-const calendarDays = document.querySelectorAll(`[data-date]`);
-calendarDays.forEach(calendarDay => {
-    calendarDay.addEventListener('click', function (e) {
-        const targetDate = e.currentTarget.getAttribute("data-date");
-        clearAll();
-        document.getElementById('eventDate').value = targetDate;
-    });
-});
-
