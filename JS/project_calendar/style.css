@@ -64,6 +64,8 @@
     display: flex;
     align-items: center;
     padding: 5px;
+    cursor: pointer;
+
 }
 
 .color-mark {
@@ -79,4 +81,8 @@
 .day-content {
     height: 90px;
     overflow-y: auto;
+}
+
+.calendar-day {
+    cursor: pointer;
 }

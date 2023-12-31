@@ -75,7 +75,7 @@ function refreshDate() {
         const month = my_month + 1;
         const m = month < 10 ? `0${month}` : month;
         str += `
-            <li data-date="${my_year}-${m}-${day}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <li class="calendar-day" data-date="${my_year}-${m}-${day}" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <div${myclass}>${i}</div>
                 <div class='day-content'></div>
             </li>`;// 創建日期節點
