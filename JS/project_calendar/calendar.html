@@ -49,10 +49,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Event</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button id="closeButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
+                        <input type="text" class="form-control" id="eventId" value="" hidden>
                         <div class="mb-3">
                             <label for="eventColor" class="form-label">Event Color:</label>
                             <div class="input-group" style="max-width: 150px;">
@@ -78,7 +79,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="deleteButton">Delete</button>
                     <button type="button" class="btn btn-primary" id="saveButton">Save changes</button>
                 </div>
             </div>

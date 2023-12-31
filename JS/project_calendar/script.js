@@ -10,6 +10,8 @@ const next = document.getElementById("next");
 const ctitle = document.getElementById("calendar-title");
 const cyear = document.getElementById("calendar-year");
 const saveButton = document.getElementById("saveButton");
+const deleteButton = document.getElementById("deleteButton");
+
 
 // 拿到當前的年分日期
 let my_date = new Date();
@@ -62,7 +64,7 @@ function refreshDate() {
             myclass = " class='daystocome'"; // 當該日期在今天之後時，以深灰字體顯示
         }
         str += `
-            <li data-day="${i}">
+            <li data-day="${i}" data-date="${my_year}-${my_month + 1}-${i}" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <div${myclass}>${i}</div>
                 <div class='day-content'></div>
             </li>`;// 創建日期節點
@@ -98,37 +100,73 @@ next.addEventListener("click", function (e) {
 // 事件監聽-新增表單數據到JSON
 saveButton.addEventListener('click', function () {
     // 獲取表單數據
-    let eventColor = document.getElementById('eventColor').value;
-    let eventDate = document.getElementById('eventDate').value;
-    let eventTime = document.getElementById('eventTime').value;
-    let eventTitle = document.getElementById('eventTitle').value;
-    let eventDescription = document.getElementById('eventDescription').value;
-
-
-    // 使用當前時間戳作為 ID
-    let eventId = Date.now();
-
-    // 組合為 JSON 對象
-    let newEvent = {
-        "id": eventId,
-        "color": eventColor,
-        "date": eventDate,
-        "time": eventTime,
-        "title": eventTitle,
-        "description": eventDescription
-    };
+    const eventId = document.getElementById('eventId').value;
+    const eventColor = document.getElementById('eventColor').value;
+    const eventDate = document.getElementById('eventDate').value;
+    const eventTime = document.getElementById('eventTime').value;
+    const eventTitle = document.getElementById('eventTitle').value;
+    const eventDescription = document.getElementById('eventDescription').value;
 
     // 獲取現有的事件數據
     let eventData = getEventData();
 
-    // 添加新事件
-    eventData.events.push(newEvent);
+    if (!eventId) {
+        // 添加新事件
+        // 組合為 JSON 對象
+        let newEvent = {
+            // 使用當前時間戳作為 ID
+            "id": Date.now(),
+            "color": eventColor,
+            "date": eventDate,
+            "time": eventTime,
+            "title": eventTitle,
+            "description": eventDescription
+        };
+
+        eventData.events.push(newEvent);
+    } else { 
+        // 編輯現有事件
+        const foundEvent = eventData.events.find((eData) => {
+            return eData.id == eventId;
+        });
+        foundEvent.color = eventColor;
+        foundEvent.date = eventDate;
+        foundEvent.time = eventTime;
+        foundEvent.title = eventTitle;
+        foundEvent.description = eventDescription;
+        console.log(eventData.events);
+    }
 
     // 保存更新後的數據到 localStorage
     saveEventData(eventData);
 
     // 更新行事曆
     updateCalendar();
+
+    // 模擬使用者點了右上角的XX,(關閉視窗)
+    document.getElementById('closeButton').click();
+});
+
+// 事件監聽-刪除行程
+deleteButton.addEventListener('click', function () {
+    const eventId = document.getElementById('eventId').value;
+    if (eventId) {
+        // 有ID存在時的情況
+        let eventData = getEventData();
+        const filteredEvents = eventData.events.filter((eData) => {
+            return eData.id != eventId;
+        });
+        eventData.events = filteredEvents;
+        saveEventData(eventData);
+    } else {
+        // 沒有ID存在時的情況
+        alert("資料不存在");
+    }
+    
+    updateCalendar();
+    
+    // 模擬使用者點了右上角的XX,(關閉視窗)
+    document.getElementById('closeButton').click();
 });
 
 // 取得localStorage的內容
@@ -164,14 +202,51 @@ function updateCalendar() {
             const dayContent = dayElement.querySelector('.day-content');
             const dataDay = document.createElement("div");
             dataDay.id = event.id;
+            dataDay.className = "event";
+            dataDay.setAttribute("data-bs-toggle", "modal");
+            dataDay.setAttribute("data-bs-target", "#exampleModal");
             dataDay.innerHTML = `
-                <div class="event">
-                    <span class="color-mark" style="background-color: ${event.color};"></span>
-                    <span class="event-title">${event.title}</span>
-                </div>`;
-            dayContent.append(dataDay);
+                <span class="color-mark" style="background-color: ${event.color};"></span>
+                <span class="event-title">${event.title}</span>`;
+            dayContent.append(dataDay);           
         }
     });
 }
-updateCalendar()
+updateCalendar();
+
+//讀取localStorage的檔案, 呈現在新增、修改行程畫面
+const events = document.querySelectorAll(".event");
+events.forEach(event => {
+    event.addEventListener('click', function (e) {
+        // 用事件的id來搜索存檔
+        const eventID = e.currentTarget.id
+        const storedObject = localStorage.getItem("calendarEvents");
+
+        if (storedObject) {
+            const dataObject = JSON.parse(storedObject);
+            const foundEvent = dataObject.events.find((eData) => {
+                return eData.id == eventID;
+            });
+            // 獲取表單數據
+            document.getElementById('eventId').value = foundEvent.id;
+            // console.log(document.getElementById('eventId').value);
+            document.getElementById('eventColor').value = foundEvent.color;
+            document.getElementById('eventDate').value = foundEvent.date;
+            document.getElementById('eventTime').value = foundEvent.time;
+            document.getElementById('eventTitle').value = foundEvent.title;
+            document.getElementById('eventDescription').value = foundEvent.description;
+        } else {
+            console.log("No object found for event ID");
+        }
+    });
+});
+
+// 讓每個格子的日期, 自動填進表單
+const calendarDays = document.querySelectorAll(`[data-day]`);
+calendarDays.forEach(calendarDay => {
+    calendarDay.addEventListener('click', function (e) {
+        const targetDate = e.currentTarget.getAttribute("data-date");
+        document.getElementById('eventDate').value = targetDate;
+    });
+});
 
