@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOL List</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        .card {
+            border: 1px solid black;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .headshot {
+            overflow: hidden;
+            text-align: center;
+            background-color: lavenderblush;
+        }
+
+        .card-title {
+            color: white;
+            background-color: black;
+            display: inline-block;
+            border-radius: 5px;
+            padding: 5px 15px 5px 15px;
+            width: 100%;
+        }
+
+        .card-body {
+            background-color: #ffbf67;
+        }
+
+        .card:hover {
+            box-shadow: 8px 8px 15px #808080;
+            transform: translate(5px, 5px);
+        }
+
+        .card:hover img {
+            transform: scale(1.2);
+            transition: transform 0.5s;
+        }
+
+        .card:not(:hover) img {
+            transform: scale(1, 1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-body {
+            background-color: lightgreen !important;
+        }
+
+        .card:hover .card-title {
+            color: black;
+            background-color: white !important;
+        }
+
+        .modal-header {
+            background-color: cornflowerblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jumbotron bg-info text-center">
+        <h1>LOL英雄聯盟圖鑑</h1>
+        <button class="btn btn-danger" id="createhero">從DOM建立英雄人物陣列資料後清除container</button>
+        <button class="btn btn-warning" id="listhero">以文字迭代英雄人物資料</button>
+        <button class="btn btn-primary" id="tablehero">以表格呈現英雄人物資料</button>
+    </div>
+    <div id="result"></div>
+    <div id="container" class="row">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="1">
+            <div class="card" id="Aatrox">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">1 : Aatrox - 厄薩斯</h5>
+                    <p class="card-text">尊貴的蘇瑞瑪守護者過去曾為符文大地挺身對抗虛空，只不過厄薩斯和...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="2">
+            <div class="card" id="Ahri">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">2 : Ahri - 阿璃</h5>
+                    <p class="card-text">天生與潛伏於符文大地中的力量有緊密連結的阿璃是一名梵斯塔雅人，...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="3">
+            <div class="card" id="Akali">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Akali_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">3 : Akali - 阿卡莉</h5>
+                    <p class="card-text">拋棄了均衡組織與暗影之拳的頭銜，阿卡莉如今獨自出擊，準備成為人...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="4">
+            <div class="card" id="Alistar">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Alistar_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">4 : Alistar - 亞歷斯塔</h5>
+                    <p class="card-text">身為令人畏懼的強大戰士 － 亞歷斯塔，替自己滅亡的氏族尋找向諾...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="5">
+            <div class="card" id="Amumu">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Amumu_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">5 : Amumu - 阿姆姆</h5>
+                    <p class="card-text">傳說阿姆姆是一個來自古蘇瑞瑪，既寂寞又憂鬱的靈魂。他在這世上飄...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="6">
+            <div class="card" id="Anivia">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Anivia_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">6 : Anivia - 艾妮維亞</h5>
+                    <p class="card-text">艾妮維亞是仁慈，外型為冰晶鳳凰的神靈。她歷經過無數次的生死循環...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="7">
+            <div class="card" id="Annie">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">7 : Annie - 安妮</h5>
+                    <p class="card-text">安妮是一名擁有強大火燄之力的幼年法師。雖然危險，卻讓人不禁承認...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="8">
+            <div class="card" id="Aphelios">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aphelios_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">8 : Aphelios - 亞菲利歐</h5>
+                    <p class="card-text">溶於月影的神秘身姿、殺器盡出的劍拔弩張，亞菲利歐用致命的沉默弒...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="9">
+            <div class="card" id="Ashe">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ashe_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">9 : Ashe - 艾希</h5>
+                    <p class="card-text">身為寒霜之裔的艾希是北境人口數量最龐大的部族 －「艾伐洛森」的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="10">
+            <div class="card" id="AurelionSol">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">10 : AurelionSol - 翱銳龍獸</h5>
+                    <p class="card-text">曾經，翱銳龍獸以他精妙的星體結構點亮了空無一物的太空。而今，他...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="11">
+            <div class="card" id="Azir">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Azir_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">11 : Azir - 阿祈爾</h5>
+                    <p class="card-text">在好幾個世紀以前，阿祈爾是蘇瑞瑪的帝王，站在權力的最頂點。然而...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Marksman</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="12">
+            <div class="card" id="Bard">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Bard_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">12 : Bard - 巴德</h5>
+                    <p class="card-text">「漂泊守望者」巴德來自星際，他是機運的代理者，為了維持世界的平...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="13">
+            <div class="card" id="Blitzcrank">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Blitzcrank_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">13 : Blitzcrank - 布里茨</h5>
+                    <p class="card-text">布里茨來自佐恩，是一台體型龐大、堅不可摧的機器人。當初創造他本...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="14">
+            <div class="card" id="Brand">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Brand_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">14 : Brand - 布蘭德</h5>
+                    <p class="card-text">布蘭德的前身曾是弗雷爾卓德某個部落中一個叫作「基恩．羅西」的男...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="15">
+            <div class="card" id="Braum">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Braum_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">15 : Braum - 布郎姆</h5>
+                    <p class="card-text">布郎姆的體格異於常人地健壯，傳聞他連心臟都比一般人還要大顆。他...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="16">
+            <div class="card" id="Caitlyn">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Caitlyn_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">16 : Caitlyn - 凱特琳</h5>
+                    <p class="card-text">凱特琳以皮爾托福最優秀的執法者聞名世界，她也是幫助這座城市擺脫...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="17">
+            <div class="card" id="Camille">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Camille_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">17 : Camille - 卡蜜兒</h5>
+                    <p class="card-text">行事總是遊走在法律邊緣的卡蜜兒是名門氏族斐羅仕的首席情報員。優...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="18">
+            <div class="card" id="Cassiopeia">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Cassiopeia_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">18 : Cassiopeia - 卡莎碧雅</h5>
+                    <p class="card-text">卡莎碧雅是隻半人半蛇的生物，相當懂得如何利用他人來實現她狡詐的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="19">
+            <div class="card" id="Chogath">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Chogath_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">19 : Chogath - 科加斯</h5>
+                    <p class="card-text">科加斯在刺眼陽光的照耀下首次出現在符文大地之時，就已經是以受到...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="20">
+            <div class="card" id="Corki">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Corki_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">20 : Corki - 庫奇</h5>
+                    <p class="card-text">身為約德爾飛行員的庫奇生平最愛兩件事物：第一是飛行，第二是他那...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="21">
+            <div class="card" id="Darius">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Darius_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">21 : Darius - 達瑞斯</h5>
+                    <p class="card-text">沒有任何人比達瑞斯還更能代表諾克薩斯的強盛與力量。他是整個國家...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="22">
+            <div class="card" id="Diana">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Diana_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">22 : Diana - 黛安娜</h5>
+                    <p class="card-text">黛安娜手持新月刃，為隱藏在巨石峰周圍的神祕力量 － 月環而戰。...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="23">
+            <div class="card" id="Draven">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Draven_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">23 : Draven - 達瑞文</h5>
+                    <p class="card-text">在諾克薩斯，以足智多謀而為人所知的戰士必須在競技場上擊敗對手以...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="24">
+            <div class="card" id="DrMundo">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/DrMundo_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">24 : DrMundo - 蒙多醫生</h5>
+                    <p class="card-text">蒙多醫生身上令人不寒而慄的紫色，完全喪失人性的心智，以及他永不...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="25">
+            <div class="card" id="Ekko">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ekko_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">25 : Ekko - 艾克</h5>
+                    <p class="card-text">艾克是一名來自佐恩街頭的天才，他能夠操控時間，扭轉每個惡劣的情...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="26">
+            <div class="card" id="Elise">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Elise_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">26 : Elise - 伊莉絲</h5>
+                    <p class="card-text">在諾克薩斯深處的不朽堡壘裡佇立著一座幽暗無光的宮殿，定居在這裡...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="27">
+            <div class="card" id="Evelynn">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Evelynn_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">27 : Evelynn - 伊芙琳</h5>
+                    <p class="card-text">符文大地幽暗的裂縫深處潛伏著一名惡魔，她的名字叫作伊芙琳。伊芙...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="28">
+            <div class="card" id="Ezreal">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">28 : Ezreal - 伊澤瑞爾</h5>
+                    <p class="card-text">伊澤瑞爾是一名衝勁十足的探險家，他憑藉著偶然得到的魔法祕寶造訪...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="29">
+            <div class="card" id="Fiddlesticks">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiddlesticks_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">29 : Fiddlesticks - 費德提克</h5>
+                    <p class="card-text">有個亙古且令人恐懼的事物已經在符文大地甦醒了。它潛伏於人類世界...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="30">
+            <div class="card" id="Fiora">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiora_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">30 : Fiora - 菲歐拉</h5>
+                    <p class="card-text">瓦羅然中最受人敬畏的決鬥者，菲歐拉以她易怒的性格、狡詐的頭腦，...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="31">
+            <div class="card" id="Fizz">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fizz_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">31 : Fizz - 飛斯</h5>
+                    <p class="card-text">飛斯是一名兩棲的約德爾人，他生活在比爾吉沃特的珊瑚礁中。他經常...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="32">
+            <div class="card" id="Galio">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Galio_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">32 : Galio - 加里歐</h5>
+                    <p class="card-text">每次踏上蒂瑪西亞城外，人們總會看到禦國巨像加里歐矗立在那，警戒...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="33">
+            <div class="card" id="Gangplank">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gangplank_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">33 : Gangplank - 剛普朗克</h5>
+                    <p class="card-text">剛普朗克曾經統治比爾吉沃特，在他的暴政結束後，有些人甚至認為他...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="34">
+            <div class="card" id="Garen">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">34 : Garen - 蓋倫</h5>
+                    <p class="card-text">身為一位自豪及高貴的戰士，蓋倫是無畏先鋒軍團的一員並為其而戰。...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="35">
+            <div class="card" id="Gnar">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gnar_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">35 : Gnar - 吶兒</h5>
+                    <p class="card-text">吶兒是遠古的約德爾族，平時玩耍的可愛模樣會因為狂怒而瞬間轉變，...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="36">
+            <div class="card" id="Gragas">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gragas_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">36 : Gragas - 古拉格斯</h5>
+                    <p class="card-text">古拉格斯是一名身形龐大，行為舉止十分豪邁粗魯的釀酒大師。他唯一...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="37">
+            <div class="card" id="Graves">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Graves_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">37 : Graves - 葛雷夫</h5>
+                    <p class="card-text">麥肯．葛雷夫是一位著名的僱傭兵、賭徒和竊賊，每個他拜訪過的城市...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="38">
+            <div class="card" id="Hecarim">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Hecarim_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">38 : Hecarim - 赫克林</h5>
+                    <p class="card-text">赫克林是人與野獸的幽靈混合體，其身上被下的詛咒迫使他必須永生駕...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="39">
+            <div class="card" id="Heimerdinger">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Heimerdinger_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">39 : Heimerdinger - 漢默丁格</h5>
+                    <p class="card-text">一名傑出、個性古怪的約德爾科學家賽爾．畢．漢默丁格是皮爾托福有...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="40">
+            <div class="card" id="Illaoi">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Illaoi_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">40 : Illaoi - 伊羅旖</h5>
+                    <p class="card-text">伊羅旖的強健體魄在她不可動搖的意志下相形渺小。而如偉大海妖的預...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="41">
+            <div class="card" id="Irelia">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Irelia_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">41 : Irelia - 伊瑞莉雅</h5>
+                    <p class="card-text">諾克薩斯占領愛歐尼亞的這段期間促生了許多英雄，其中沒有人比來自...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="42">
+            <div class="card" id="Ivern">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ivern_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">42 : Ivern - 埃爾文</h5>
+                    <p class="card-text">荊棘之足‧埃爾文，也被許多人稱做為綠林之父，他是一個半人半樹的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="43">
+            <div class="card" id="Janna">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Janna_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">43 : Janna - 珍娜</h5>
+                    <p class="card-text">神秘的珍娜是風之元素的化身，以符文大地的颶風之力守護著佐恩孤苦...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="44">
+            <div class="card" id="JarvanIV">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/JarvanIV_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">44 : JarvanIV - 嘉文四世</h5>
+                    <p class="card-text">嘉文四世，光盾王朝的後裔，是蒂瑪西亞正統的王位繼承人。他從小就...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="45">
+            <div class="card" id="Jax">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jax_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">45 : Jax - 賈克斯</h5>
+                    <p class="card-text">賈克斯是伊卡西亞最後一位至今仍在世的武器大師。他操縱特殊武器的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="46">
+            <div class="card" id="Jayce">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jayce_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">46 : Jayce - 杰西</h5>
+                    <p class="card-text">杰西是一名相當出色的發明家，他把一生都投入在守護皮爾托福以及進...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Marksman</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="47">
+            <div class="card" id="Jhin">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jhin_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">47 : Jhin - 燼</h5>
+                    <p class="card-text">燼是一個神經質、視殺戮為藝術的罪犯。曾經被囚禁在愛歐尼亞，但隨...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="48">
+            <div class="card" id="Jinx">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">48 : Jinx - 吉茵珂絲</h5>
+                    <p class="card-text">吉茵珂絲來自佐恩，是一名極為瘋狂且衝動的犯罪分子。她以肆意破壞...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="49">
+            <div class="card" id="Kaisa">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kaisa_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">49 : Kaisa - 凱莎</h5>
+                    <p class="card-text">凱莎在她還是個孩子的時候被拖入了虛空，她透過絕對的意志力和堅定...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="50">
+            <div class="card" id="Kalista">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kalista_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">50 : Kalista - 克黎思妲</h5>
+                    <p class="card-text">克黎思妲是由闇影島召喚出來的不死幽魂，她滿懷著憤怒的情緒與復仇...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="51">
+            <div class="card" id="Karma">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Karma_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">51 : Karma - 卡瑪</h5>
+                    <p class="card-text">沒有英雄比卡瑪還更能代表愛歐尼亞的傳統精神。她是歷經無數次輪迴...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="52">
+            <div class="card" id="Karthus">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Karthus_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">52 : Karthus - 卡爾瑟斯</h5>
+                    <p class="card-text">卡爾瑟斯是被遺忘的先驅，同時也是不死之靈，其令人毛骨悚然的可怖...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="53">
+            <div class="card" id="Kassadin">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kassadin_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">53 : Kassadin - 卡薩丁</h5>
+                    <p class="card-text">卡薩丁在世界上最黑暗的地方切下了一道火光，他知道他的日子屈指可...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="54">
+            <div class="card" id="Katarina">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Katarina_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">54 : Katarina - 卡特蓮娜</h5>
+                    <p class="card-text">判斷精確，招招致命，卡特蓮娜是諾克薩斯的頂尖刺客。做為傳奇般的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="55">
+            <div class="card" id="Kayle">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kayle_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">55 : Kayle - 凱爾</h5>
+                    <p class="card-text">凱爾在符文戰爭肆虐全世界的年代，以巨石峰星靈之姿誕生在這個世上...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="56">
+            <div class="card" id="Kayn">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kayn_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">56 : Kayn - 慨影</h5>
+                    <p class="card-text">席達．慨影是一名舉世無雙的暗影術士，他為了達成生命中最重大的目...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="57">
+            <div class="card" id="Kennen">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kennen_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">57 : Kennen - 凱能</h5>
+                    <p class="card-text">凱能是守護愛歐尼亞諧和的組織 － 「均衡」裡面唯一一位約德爾人...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Marksman</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="58">
+            <div class="card" id="Khazix">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Khazix_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">58 : Khazix - 卡力斯</h5>
+                    <p class="card-text">虛空成長著，虛空適應著 － 在無數存在的虛空生物中，沒有什麼比...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="59">
+            <div class="card" id="Kindred">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kindred_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">59 : Kindred - 鏡爪</h5>
+                    <p class="card-text">雖為各自為體，卻從不分離 － 鏡爪即象徵了死亡的兩面。神羊的箭...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="60">
+            <div class="card" id="Kled">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kled_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">60 : Kled - 克雷德</h5>
+                    <p class="card-text">約德爾人克雷德狂野暴躁且無所畏懼，這樣的戰士恰恰象徵了諾克薩斯...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="61">
+            <div class="card" id="KogMaw">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KogMaw_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">61 : KogMaw - 寇格魔</h5>
+                    <p class="card-text">在伊卡西亞的虛無深處，像寇格魔這種有著血盆大口的腐臭生物誕生了...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="62">
+            <div class="card" id="Leblanc">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Leblanc_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">62 : Leblanc - 勒布朗</h5>
+                    <p class="card-text">即使對於黑玫瑰的其他成員來說，勒布朗也是相當神秘的人物 － 一...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="63">
+            <div class="card" id="LeeSin">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/LeeSin_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">63 : LeeSin - 李星</h5>
+                    <p class="card-text">李星是精通愛歐尼亞古代武術的大師。每當眼前出現挑戰，他體內蘊藏...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="64">
+            <div class="card" id="Leona">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Leona_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">64 : Leona - 雷歐娜</h5>
+                    <p class="card-text">雷歐娜與太陽之火同生，她是日輪的神聖戰士，手持太陽聖劍以及拂曉...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="65">
+            <div class="card" id="Lillia">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lillia_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">65 : Lillia - 莉莉亞</h5>
+                    <p class="card-text">十分害羞的鹿精靈莉莉亞，膽怯地在愛歐尼亞的樹林中穿梭。她總是躲...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="66">
+            <div class="card" id="Lissandra">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lissandra_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">66 : Lissandra - 麗珊卓</h5>
+                    <p class="card-text">麗珊卓善於操弄冰的魔法，她的力量源自汙化冰雪純淨的精華，轉換結...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="67">
+            <div class="card" id="Lucian">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lucian_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">67 : Lucian - 路西恩</h5>
+                    <p class="card-text">身為光之哨兵的路西恩，是一個冷酷的靈魂狩獵者，他無情追捕那些不...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="68">
+            <div class="card" id="Lulu">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lulu_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">68 : Lulu - 露璐</h5>
+                    <p class="card-text">約德爾法師露璐以她如夢境般的幻術以及能夠召喚出奇異生物的魔法聞...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="69">
+            <div class="card" id="Lux">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">69 : Lux - 拉克絲</h5>
+                    <p class="card-text">拉克絲出身自蒂瑪西亞的皇冠守衛，一個恐懼和懷疑著魔法能力的孤立...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="70">
+            <div class="card" id="Malphite">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Malphite_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">70 : Malphite - 墨菲特</h5>
+                    <p class="card-text">墨菲特是一頭身形巨大的岩石生命體，並致力於為這個混亂的符文大地...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="71">
+            <div class="card" id="Malzahar">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Malzahar_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">71 : Malzahar - 馬爾札哈</h5>
+                    <p class="card-text">馬爾札哈是個致力於統一所有生命的虔誠狂熱者，他相信虛空的出現是...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="72">
+            <div class="card" id="Maokai">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Maokai_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">72 : Maokai - 茂凱</h5>
+                    <p class="card-text">茂凱是一個充滿怒火，不斷與闇影島那些非自然恐怖生物奮戰的高聳樹...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="73">
+            <div class="card" id="MasterYi">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MasterYi_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">73 : MasterYi - 易大師</h5>
+                    <p class="card-text">易大師磨練陶冶自己的思想與體魄，他的身與心近乎合而為一。雖然他...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="74">
+            <div class="card" id="MissFortune">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MissFortune_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">74 : MissFortune - 好運姐</h5>
+                    <p class="card-text">莎拉‧好運同時以艷麗的美貌與無情的冷酷聞名，即使身處無數罪犯充...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="75">
+            <div class="card" id="MonkeyKing">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MonkeyKing_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">75 : MonkeyKing - 悟空</h5>
+                    <p class="card-text">悟空是一名狡猾的梵斯塔雅人，利用自己超群的力量、敏捷的速度及機...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="76">
+            <div class="card" id="Mordekaiser">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Mordekaiser_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">76 : Mordekaiser - 魔鬥凱薩</h5>
+                    <p class="card-text">兩度被殺、三度重生的魔鬥凱薩，是來自古老時代的一名殘暴軍閥，利...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="77">
+            <div class="card" id="Morgana">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Morgana_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">77 : Morgana - 魔甘娜</h5>
+                    <p class="card-text">被自己凡人的身軀和星靈的本質不斷拉扯著，魔甘娜將自己的翅膀禁錮...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="78">
+            <div class="card" id="Nami">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nami_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">78 : Nami - 娜米</h5>
+                    <p class="card-text">身為一名年輕任性，居住在深海的梵斯塔雅人，娜米是第一個當星際漫...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="79">
+            <div class="card" id="Nasus">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nasus_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">79 : Nasus - 納瑟斯</h5>
+                    <p class="card-text">納瑟斯是一名來自古蘇瑞瑪，豺狼容貌、高貴莊嚴的至高戰士，並在沙...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="80">
+            <div class="card" id="Nautilus">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nautilus_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">80 : Nautilus - 納帝魯斯</h5>
+                    <p class="card-text">比爾吉沃特流傳著一個孤獨的傳說，這則故事就跟在那邊沉沒的第一座...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="81">
+            <div class="card" id="Neeko">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Neeko_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">81 : Neeko - 妮可</h5>
+                    <p class="card-text">來自失落已久的梵斯塔雅部落，妮可可以透過借用他人的外表來融入任...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="82">
+            <div class="card" id="Nidalee">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nidalee_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">82 : Nidalee - 奈德麗</h5>
+                    <p class="card-text">奈德麗自幼便於叢林深處成長，她擅於追蹤，且能隨自己的意志變身為...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="83">
+            <div class="card" id="Nocturne">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nocturne_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">83 : Nocturne - 夜曲</h5>
+                    <p class="card-text">每個脆弱心靈在夜裡都曾經受到惡夢的侵擾，而夜曲便是這些惡夢融合...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="84">
+            <div class="card" id="Nunu">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nunu_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">84 : Nunu - 努努和威朗普</h5>
+                    <p class="card-text">曾經有那麼一位男孩想藉由殺死怪物來證明自己是英雄，只是最後卻發...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="85">
+            <div class="card" id="Olaf">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Olaf_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">85 : Olaf - 歐拉夫</h5>
+                    <p class="card-text">歐拉夫來自弗雷爾卓德境內險惡的洛克法半島，他就像一個任誰都無法...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="86">
+            <div class="card" id="Orianna">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Orianna_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">86 : Orianna - 奧莉安娜</h5>
+                    <p class="card-text">曾經是一個好奇、有著血肉之軀的女孩，奧莉安娜現在是一個完全由發...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="87">
+            <div class="card" id="Ornn">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ornn_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">87 : Ornn - 鄂爾</h5>
+                    <p class="card-text">鄂爾是弗雷爾卓德的神靈，掌管鍛造以及工藝。他住在被稱為爐心之家...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="88">
+            <div class="card" id="Pantheon">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Pantheon_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">88 : Pantheon - 潘森</h5>
+                    <p class="card-text">亞崔斯曾經在非自願的情況下，成為戰爭星靈的寄宿對象，後來體內的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="89">
+            <div class="card" id="Poppy">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Poppy_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">89 : Poppy - 波比</h5>
+                    <p class="card-text">符文大地從來不缺英勇的英雄，但是只有少數像波比一樣頑強。身後背...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="90">
+            <div class="card" id="Pyke">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Pyke_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">90 : Pyke - 派克</h5>
+                    <p class="card-text">派克在比爾吉沃特的殘惡碼頭是名聲響亮的串叉手，原本他的生命應該...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="91">
+            <div class="card" id="Qiyana">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Qiyana_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">91 : Qiyana - 姬亞娜</h5>
+                    <p class="card-text">在叢林之城「伊克薩奧肯」中，姬亞娜為了坐上崇高的「雲陶」之位，...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="92">
+            <div class="card" id="Quinn">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Quinn_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">92 : Quinn - 葵恩</h5>
+                    <p class="card-text">葵恩是蒂瑪西亞精銳部隊中的頂尖翹楚，總是能夠深入敵方陣營，完美...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="93">
+            <div class="card" id="Rakan">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Rakan_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">93 : Rakan - 銳空</h5>
+                    <p class="card-text">銳空身上不凡的魅力總能讓身邊的人為之傾倒。他是一名梵斯塔雅人，...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="94">
+            <div class="card" id="Rammus">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Rammus_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">94 : Rammus - 拉姆斯</h5>
+                    <p class="card-text">許多人崇拜他，有些人鄙視他，但對所有人來說，他都是個神祕的存在...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="95">
+            <div class="card" id="RekSai">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/RekSai_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">95 : RekSai - 雷珂煞</h5>
+                    <p class="card-text">雷珂煞是位於食物鍊頂端的掠食者，同時也是殘暴的虛空生物。她一般...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="96">
+            <div class="card" id="Renekton">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Renekton_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">96 : Renekton - 雷尼克頓</h5>
+                    <p class="card-text">雷尼克頓來自遍地焦土的蘇瑞瑪沙漠，他是一個令人畏懼、充滿憤怒的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="97">
+            <div class="card" id="Rengar">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Rengar_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">97 : Rengar - 雷葛爾</h5>
+                    <p class="card-text">雷葛爾是一名兇猛殘暴的梵斯塔雅人，每次狩獵完他都會從慘死的獵物...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="98">
+            <div class="card" id="Riven">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Riven_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">98 : Riven - 雷玟</h5>
+                    <p class="card-text">曾經是諾克薩斯頂尖劍士的雷玟現在流放於過去她亟欲征服的土地。她...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="99">
+            <div class="card" id="Rumble">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Rumble_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">99 : Rumble - 藍寶</h5>
+                    <p class="card-text">藍寶是個年輕、脾氣火爆偏激的發明家。只用了自己的雙手和一堆廢棄...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="100">
+            <div class="card" id="Ryze">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ryze_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">100 : Ryze - 雷茲</h5>
+                    <p class="card-text">古老而堅韌的秘術法師雷茲，是符文大地上公認經驗最豐富的法師之一...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="101">
+            <div class="card" id="Samira">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Samira_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">101 : Samira - 煞蜜拉</h5>
+                    <p class="card-text">煞蜜拉無論何時何地都帶著堅定的自信尋求刺激，在孩童時期，她蘇瑞...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="102">
+            <div class="card" id="Sejuani">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sejuani_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">102 : Sejuani - 史瓦妮</h5>
+                    <p class="card-text">史瓦妮是一位殘暴及無情的寒霜之裔，她來自冬之爪部落，弗雷爾卓德...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="103">
+            <div class="card" id="Senna">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Senna_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">103 : Senna - 姍娜</h5>
+                    <p class="card-text">姍娜從小就遭受超自然的詭秘黯霧詛咒，後來加入了神聖的光之哨兵團...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="104">
+            <div class="card" id="Seraphine">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Seraphine_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">104 : Seraphine - 瑟菈紛</h5>
+                    <p class="card-text">瑟菈紛出生於皮爾托福，父母都是佐恩人，她能夠聽見其他人靈魂的聲...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="105">
+            <div class="card" id="Sett">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sett_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">105 : Sett - 賽特</h5>
+                    <p class="card-text">在與諾克薩斯的戰爭中，愛歐尼亞的地下犯罪王國日漸壯盛。而賽特脫...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="106">
+            <div class="card" id="Shaco">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Shaco_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">106 : Shaco - 薩科</h5>
+                    <p class="card-text">很久很久以前，木偶薩科曾經作為一個孤獨王子的玩物，被施了魔法的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="107">
+            <div class="card" id="Shen">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Shen_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">107 : Shen - 慎</h5>
+                    <p class="card-text">在由神秘的愛歐尼亞戰士組成的祕密組織「均衡」裡面，慎是被尊稱為...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="108">
+            <div class="card" id="Shyvana">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Shyvana_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">108 : Shyvana - 希瓦娜</h5>
+                    <p class="card-text">希瓦娜是一個心中燃燒著符文碎片魔法的生物。雖然她經常以人類的形...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="109">
+            <div class="card" id="Singed">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Singed_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">109 : Singed - 辛吉德</h5>
+                    <p class="card-text">辛吉德是一位佐恩的煉金術士，有著無人能匹敵的智慧，一生致力於超...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="110">
+            <div class="card" id="Sion">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sion_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">110 : Sion - 賽恩</h5>
+                    <p class="card-text">過去的戰爭英雄賽恩，因用他赤裸的雙手扼殺了蒂瑪西亞的國王而被諾...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="111">
+            <div class="card" id="Sivir">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sivir_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">111 : Sivir - 希維爾</h5>
+                    <p class="card-text">希維爾是一個在蘇瑞瑪沙漠中知名的寶藏獵人和傭兵隊長。手持她傳說...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="112">
+            <div class="card" id="Skarner">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Skarner_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">112 : Skarner - 史加納</h5>
+                    <p class="card-text">史加納是一隻來自蘇瑞瑪隱密山谷的巨大水晶蠍子。身為古老巴爾克族...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="113">
+            <div class="card" id="Sona">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sona_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">113 : Sona - 索娜</h5>
+                    <p class="card-text">索娜是蒂瑪西亞弦樂演奏裡最重要的音樂名手，她只能透過優美的和弦...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="114">
+            <div class="card" id="Soraka">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Soraka_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">114 : Soraka - 索拉卡</h5>
+                    <p class="card-text">索拉卡是一名來自巨石峰頂神聖次元的漫遊者，為了凡間而犧牲的不朽...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="115">
+            <div class="card" id="Swain">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Swain_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">115 : Swain - 斯溫</h5>
+                    <p class="card-text">斯溫是統領諾克薩斯的總帥，於崇尚絕對武力的城邦中也是相當有遠見...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="116">
+            <div class="card" id="Sylas">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sylas_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">116 : Sylas - 賽勒斯</h5>
+                    <p class="card-text">多格本的賽勒斯出生自蒂瑪西亞的一個小鎮，然而現在的他已然代表著...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="117">
+            <div class="card" id="Syndra">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Syndra_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">117 : Syndra - 星朵拉</h5>
+                    <p class="card-text">星朵拉是一名駭人的愛歐尼亞法師，能自由操縱令人難以置信的強大魔...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="118">
+            <div class="card" id="TahmKench">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">118 : TahmKench - 貪啃奇</h5>
+                    <p class="card-text">貪啃奇在歷史中擁有無數個名字，他優游在符文大地的水路中，吞噬可...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="119">
+            <div class="card" id="Taliyah">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Taliyah_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">119 : Taliyah - 塔莉雅</h5>
+                    <p class="card-text">塔莉雅是來自蘇瑞瑪的一位游牧民族，在青少年的夢想和成人的責任之...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="120">
+            <div class="card" id="Talon">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Talon_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">120 : Talon - 塔隆</h5>
+                    <p class="card-text">塔隆是黑暗中的一把利刃，更是一位無情的殺手，能夠在沒有任何警告...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="121">
+            <div class="card" id="Taric">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Taric_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">121 : Taric - 塔里克</h5>
+                    <p class="card-text">塔里克是保護者星靈的化身，身懷強大的力量，守護著符文大地上的愛...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="122">
+            <div class="card" id="Teemo">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Teemo_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">122 : Teemo - 提摩</h5>
+                    <p class="card-text">即使是最險峻的阻礙也無法使提摩停下腳步。他總是滿懷著熱情，以開...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="123">
+            <div class="card" id="Thresh">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Thresh_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">123 : Thresh - 瑟雷西</h5>
+                    <p class="card-text">狡詐又殘暴的瑟雷西，是闇影島上雄心勃勃、永不安息的怨靈。他曾經...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="124">
+            <div class="card" id="Tristana">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Tristana_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">124 : Tristana - 崔絲塔娜</h5>
+                    <p class="card-text">當許多其他約德爾人將自己的精力投入發現、發明或製造簡單的惡作劇...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="125">
+            <div class="card" id="Trundle">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Trundle_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">125 : Trundle - 特朗德</h5>
+                    <p class="card-text">特朗德是一隻笨重又狡詐的巨魔。對他而言，凡事都可以靠武力解決 ...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="126">
+            <div class="card" id="Tryndamere">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Tryndamere_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">126 : Tryndamere - 泰達米爾</h5>
+                    <p class="card-text">泰達米爾曾用他那永不熄滅的暴氣和怒火，穿過弗雷爾卓德，公然向北...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="127">
+            <div class="card" id="TwistedFate">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TwistedFate_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">127 : TwistedFate - 逆命</h5>
+                    <p class="card-text">逆命是個惡名昭彰的賭徒和騙子，他透過賭博走過了世界上大多數的地...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="128">
+            <div class="card" id="Twitch">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Twitch_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">128 : Twitch - 圖奇</h5>
+                    <p class="card-text">出生於佐恩的鼠患中，圖奇是個對於污染物情有獨鍾的鑑賞家，他不怕...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="129">
+            <div class="card" id="Udyr">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Udyr_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">129 : Udyr - 烏迪爾</h5>
+                    <p class="card-text">烏迪爾雖然看似和正常人無異，但是他體內卻有著四股原始猛獸神靈的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="130">
+            <div class="card" id="Urgot">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Urgot_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">130 : Urgot - 烏爾加特</h5>
+                    <p class="card-text">烏爾加特過去是諾克薩斯一名強大的劊子手，他替帝國手刃之人無數，...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="131">
+            <div class="card" id="Varus">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Varus_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">131 : Varus - 法洛士</h5>
+                    <p class="card-text">身為古老冥血族之一的法洛士，是個喜愛用箭矢折磨敵人，讓敵人在死...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="132">
+            <div class="card" id="Vayne">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Vayne_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">132 : Vayne - 汎</h5>
+                    <p class="card-text">莎烏娜．汎是一名無情且致命的蒂瑪西亞暗夜獵人，一生致力找尋並摧...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="133">
+            <div class="card" id="Veigar">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Veigar_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">133 : Veigar - 維迦</h5>
+                    <p class="card-text">維迦是位對黑暗魔法極度狂熱的大師，他欣然接受了極少數凡人才敢接...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="134">
+            <div class="card" id="Velkoz">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">134 : Velkoz - 威寇茲</h5>
+                    <p class="card-text">目前還不清楚威寇茲是否是虛空在符文大地上第一個孕育的生物，但是...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="135">
+            <div class="card" id="Vi">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Vi_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">135 : Vi - 菲艾</h5>
+                    <p class="card-text">菲艾曾經是流落佐恩街頭的罪犯，她個性暴躁、衝動，行為也十分粗暴...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="136">
+            <div class="card" id="Viktor">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Viktor_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">136 : Viktor - 維克特</h5>
+                    <p class="card-text">維克特是創新科技時代的先驅，他將畢生心力投入在能夠使人類進步的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="137">
+            <div class="card" id="Vladimir">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Vladimir_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">137 : Vladimir - 弗拉迪米爾</h5>
+                    <p class="card-text">弗拉迪米爾是一名渴望著人類鮮血的惡魔，打從諾克薩斯帝國建立以來...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="138">
+            <div class="card" id="Volibear">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Volibear_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">138 : Volibear - 弗力貝爾</h5>
+                    <p class="card-text">對於那些敬畏古神的人而言，弗力貝爾是風暴的實體化身。他充滿破壞...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="139">
+            <div class="card" id="Warwick">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Warwick_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">139 : Warwick - 沃維克</h5>
+                    <p class="card-text">沃維克是一名在佐恩陰暗街道狩獵的怪獸。他透過痛苦的實驗轉化，身...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="140">
+            <div class="card" id="Xayah">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Xayah_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">140 : Xayah - 剎雅</h5>
+                    <p class="card-text">剎雅是梵斯塔雅一名致命、犀利的改革者，她一個人發起了戰爭，希望...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Marksman</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="141">
+            <div class="card" id="Xerath">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Xerath_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">141 : Xerath - 齊勒斯</h5>
+                    <p class="card-text">齊勒斯是一名來自古蘇瑞瑪帝國的至高魔導；一個充滿古老祕術能量，...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="142">
+            <div class="card" id="XinZhao">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/XinZhao_0.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">142 : XinZhao - 趙信</h5>
+                    <p class="card-text">趙信是守護著光盾王朝的戰士。他過去曾被判處成為諾克薩斯競技場的...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="143">
+            <div class="card" id="Yasuo">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">143 : Yasuo - 犽宿</h5>
+                    <p class="card-text">犽宿是一名擁有鋼鐵意志的愛歐尼亞人，亦是個行動快如疾風、可以舞...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Assassin</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="144">
+            <div class="card" id="Yone">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yone_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">144 : Yone - 犽凝</h5>
+                    <p class="card-text">生前，他是犽凝 ─ 犽宿同母異父的哥哥，是故鄉劍塾的知名弟子。...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="145">
+            <div class="card" id="Yorick">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yorick_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">145 : Yorick - 約瑞科</h5>
+                    <p class="card-text">作為被遺忘已久的宗教修會最後倖存者，約瑞科主宰死者的力量不但庇...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Fighter</span> <span id="tag2"
+                        class="badge badge-info">Tank</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="146">
+            <div class="card" id="Yuumi">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yuumi_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">146 : Yuumi - 悠咪</h5>
+                    <p class="card-text">悠咪是一隻來自班德爾城的魔法靈貓，她曾是約爾德女巫諾拉的魔寵。...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="147">
+            <div class="card" id="Zac">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zac_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">147 : Zac - 札克</h5>
+                    <p class="card-text">在佐恩的汙水坑深處以及裂縫中可以看到許多從工廠或實驗室洩漏出來...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Tank</span> <span id="tag2"
+                        class="badge badge-info">Fighter</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="148">
+            <div class="card" id="Zed">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zed_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">148 : Zed - 劫</h5>
+                    <p class="card-text">劫的性格殘忍、無情，他是幽影軍團的領導者。他之所以創立這個組織...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Assassin</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="149">
+            <div class="card" id="Ziggs">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ziggs_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">149 : Ziggs - 希格斯</h5>
+                    <p class="card-text">希格斯是一名天生對炸彈情有獨鍾的約德爾人。他原本在皮爾托福擔任...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="150">
+            <div class="card" id="Zilean">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zilean_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">150 : Zilean - 極靈</h5>
+                    <p class="card-text">極靈曾是伊卡西亞一名強大的法師，在目睹家園被虛空毀滅之後，他開...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Support</span> <span id="tag2"
+                        class="badge badge-info">Mage</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="151">
+            <div class="card" id="Zoe">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zoe_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">151 : Zoe - 柔依</h5>
+                    <p class="card-text">柔依是調皮、想像力跟改變的化身。作為代表巨石峰與星空聯繫的信使...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="152">
+            <div class="card" id="Zyra">
+                <div class="headshot"> <img class="card-img-top"
+                        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zyra_0.jpg" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">152 : Zyra - 枷蘿</h5>
+                    <p class="card-text">枷蘿誕生於某個發生在遠古的邪惡災厄，她是大自然憤怒的化身 － ...</p> <a id="contentButton" href="#"
+                        class="btn btn-primary">詳細</a> <button id="videoButton" class="btn btn-danger">影片</button> <span
+                        id="tag1" class="badge badge-success">Mage</span> <span id="tag2"
+                        class="badge badge-info">Support</span>
+                </div>
+            </div>
+        </div>
+    </div> <template id="cardTemplate">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" card-index="">
+            <div class="card">
+                <div class="headshot"> <img class="card-img-top" src="~/images/hero.png" alt="..."> </div>
+                <div class="card-body">
+                    <h5 class="card-title">Title</h5>
+                    <p class="card-text">Description</p> <a id="contentButton" href="#" class="btn btn-primary">詳細</a>
+                    <button id="videoButton" class="btn btn-danger">影片</button> <span id="tag1"
+                        class="badge badge-success"></span> <span id="tag2" class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+    </template>
+    <div class="modal fade" id="contentModal" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="contentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contentModalLabel">Modal title</h5> <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                </div>
+                <div class="modal-body"> <img src="" alt="">
+                    <p id="hp"></p>
+                    <p id="movespeed"></p>
+                    <p id="armor"></p>
+                    <p id="spellblock"></p>
+                    <p id="attackrange"></p>
+                </div>
+                <div class="modal-footer"> <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Close</button> </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="videoModal" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="VideoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="VideoModalLabel">Modal title</h5>
+                </div>
+                <div class="modal-body"> <iframe id="youtubue" width="466" height="294"
+                        src="https://www.youtube.com/embed/hlalkAUkwqE" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen=""></iframe> </div>
+                <div class="modal-footer"> <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Close</button> </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        let heroArray = [];
+        let container;
+        let btnCreateHeroArray, btnListHero, btnTableHero;
+
+        window.onload = function () {
+            container = document.querySelector("#container");
+            btnCreateHeroArray = document.getElementById("createhero");
+            btnListHero = document.getElementById("listhero");
+            btnTableHero = document.getElementById("tablehero");
+
+            btnCreateHeroArray.addEventListener("click", function () {
+                // alert("從DOM建立英雄人物陣列資料後清除container");
+
+                alert("從DOM建立英雄人物陣列資料成功！");
+
+                // 1.從DOM建立英雄人物資料
+                let lis = container.querySelectorAll("[card-index]");
+                lis.forEach((li, index) => {
+                    let id = li.querySelector(".card").id;
+                    let text = li.querySelector(".card-text").innerText;
+                    let url = li.querySelector("img").getAttribute("src");
+                    heroArray.push({ id: id, index: index, text: text, url: url });
+                });
+                // 2.清除container
+                document.querySelector("#container").innerHTML = "";
+            });
+
+            btnListHero.addEventListener("click", function () {
+                if (heroArray.length == 0) {
+                    alert("請先建立陣列資料");
+                    return;
+                }
+                // alert("以文字迭代英雄人物資料！");
+                heroArray.forEach((hero) => {
+                    let heroElement = document.createElement("div")
+                    heroElement.innerHTML = `
+                        {id: '${hero.id}', 
+                        index: ${hero.index}, 
+                        text: '${hero.text}', 
+                        url: '${hero.url}'}
+                        <br>
+                    `;
+
+                    document.querySelector("#container").appendChild(heroElement)
+                })
+                // 修改margin, 因為原始的是-15, 畫面會吃字
+                let row = document.querySelector('.row');
+                if (row) {
+                    row.style.margin = '0';
+                }
+            });
+
+            btnTableHero.addEventListener("click", function () {
+                if (heroArray.length == 0) {
+                    alert("請先建立陣列資料");
+                    return;
+                }
+
+                alert("以表格呈現英雄人物資料！");
+            });
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
