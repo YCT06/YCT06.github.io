@@ -110,6 +110,10 @@ next.addEventListener("click", function (e) {
     updateCalendar();
 });
 
+today.addEventListener("click", function (e) {
+    location.reload();
+});
+
 // 事件監聽-新增表單數據到JSON
 saveButton.addEventListener('click', function () {
     // 獲取表單數據

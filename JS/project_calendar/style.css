@@ -105,8 +105,10 @@
 .btngroup {
     /* btn-group無法使用 */
     display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
+    justify-content: flex-end;
+}
+.btngroup a {
+    margin: 0 2px;
 }
 
 h1, h2 {
