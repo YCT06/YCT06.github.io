@@ -1,0 +1,94 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.todo-container {
+    background: #fff;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+}
+
+.todo-list {
+    margin: 20px 0;
+}
+
+
+#todo-input {
+    width: calc(100% - 22px);
+    border: 1px solid #D3D8DD;
+    border-radius: 10px 0 0 10px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+#add-todo {
+    border-radius: 0 10px 10px 0;
+    background-color:#0D6EFD;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.todo-item .checkbox{
+    transform: scale(1.2);
+}
+
+.todo-item .note {
+    height: 24px;
+    font-size: 18px;
+    flex: 1;
+}
+
+.todo-item.completed .note {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+button {
+    height: 30px;
+    width: 80px;
+    border: none;
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    border-radius:10px;
+}
+
+.edit {
+    background-color: #FDB50E;
+    border-radius:10px;
+}
+
+.edit:hover {
+    background-color: #c38901;
+}
+
+.save {
+    background-color: #1A7742;
+    border-radius:10px;
+}
+
+.save:hover {
+    background-color: #145c33;
+}
+
+button:hover {
+    background-color: #dc3545;
+}
+
