@@ -170,6 +170,12 @@ document.addEventListener('DOMContentLoaded', function () {
         checkBox.setAttribute('class', 'checkbox');
         checkBox.type = 'checkbox';
         checkBox.checked = checkbox;
+        //讀取檔案時按照checkbox的狀態給completed
+        if (checkBox.checked) {
+            todoItem.classList.add('completed');
+        } else {
+            todoItem.classList.remove('completed');
+        }
         checkBox.addEventListener('click', function () {
             //checkbox修改的儲存行為
             const eventId = textId.id; 
