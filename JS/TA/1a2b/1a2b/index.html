@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>1A2B猜數字遊戲</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container my-5">
+      <h1 class="text-center">1A2B猜數字遊戲</h1>
+      <div class="btn-group w-100 my-3" role="group" aria-label="Basic example">
+        <button type="button" id="start_btn" class="btn btn-outline-secondary">
+          開始
+        </button>
+        <button
+          type="button"
+          id="restart_btn"
+          class="btn btn-outline-secondary"
+        >
+          放棄重來
+        </button>
+        <button
+          type="button"
+          id="show_answer_btn"
+          class="btn btn-outline-secondary"
+        >
+          看答案
+        </button>
+      </div>
+      <div class="input-group my-3">
+        <span class="input-group-text">猜數字</span>
+        <input
+          type="text"
+          id="guess_input"
+          class="form-control"
+          placeholder="GuessNumber"
+          aria-label="GuessNumber"
+          aria-describedby="GuessNumber"
+        />
+        <button type="button" id="guess_btn" class="btn btn-outline-secondary">
+          猜！
+        </button>
+      </div>
+      <ul id="guess_history_list" class="list-group">
+        <!-- <li class="list-group-item">
+          <span class="badge bg-danger">0A0B</span> 1234
+        </li>
+        <li class="list-group-item">
+          <span class="badge bg-danger">0A0B</span> 1234
+        </li>
+        <li class="list-group-item">
+          <span class="badge bg-danger">0A0B</span> 1234
+        </li>
+        <li class="list-group-item">
+          <span class="badge bg-danger">0A0B</span> 1234
+        </li>
+        <li class="list-group-item">
+          <span class="badge bg-success">4A0B</span> 5678
+        </li> -->
+      </ul>
+    </div>
+
+    <div class="toast-container top-0 end-0">
+      <div
+        id="game_msg_toast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">Hint</strong>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">Hello, world! This is a toast message.</div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="end_game_modal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">過關</h1>
+          </div>
+          <div class="modal-body">恭喜過關！</div>
+          <div class="modal-footer">
+            <button type="button" id="end_game_btn" class="btn btn-primary">
+              重新開始
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>行事曆Demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <style>
+      .weekday-area > * {
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+      }
+
+      .date-area > * {
+        height: 100px;
+        cursor: pointer;
+        /* text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden; */
+      }
+
+      .row-cols-7 > * {
+        flex: 0 0 auto;
+        width: 14.2857143%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-3">
+      <header class="my-1 text-center">
+        <h1>行事曆Demo</h1>
+        <h2 class="date-title">月份</h2>
+        <div class="control-btn-group d-flex justify-content-between">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#create_todo_modal"
+          >
+            +
+          </button>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button
+              type="button"
+              class="btn btn-outline-primary last-month-btn"
+            >
+              上個月
+            </button>
+            <button type="button" class="btn btn-outline-primary today-btn">
+              今天
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-primary next-month-btn"
+            >
+              下個月
+            </button>
+          </div>
+        </div>
+      </header>
+      <section class="calendar-area">
+        <div class="row row-cols-7 weekday-area g-0">
+          <div class="border col">日</div>
+          <div class="border col">一</div>
+          <div class="border col">二</div>
+          <div class="border col">三</div>
+          <div class="border col">四</div>
+          <div class="border col">五</div>
+          <div class="border col">六</div>
+        </div>
+        <div class="row row-cols-7 date-area g-0">
+          <div class="border col">
+            <span class="d-inline-block text-center w-100">1</span>
+          </div>
+          <div class="border col">
+            <span>1</span>
+            <ul>
+              <li>todo1</li>
+              <li>todo2</li>
+            </ul>
+          </div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+          <div class="border col"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Create Modal -->
+    <div
+      class="modal fade"
+      id="create_todo_modal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">新增行程</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="date_input" class="form-label">日期</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date_input"
+                aria-describedby="datetimeHelp"
+              />
+              <div id="datetimeHelp" class="form-text">請選擇日期.</div>
+            </div>
+            <div class="mb-3">
+              <label for="todo_item_input" class="form-label">待辦事項</label>
+              <textarea class="form-control" id="todo_item_input"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              取消
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="createTodo()"
+            >
+              新增
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Modal -->
+    <div
+      class="modal fade"
+      id="update_todo_modal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel2"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel2">編輯行程</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="date_input" class="form-label">日期</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date_update_input"
+                aria-describedby="datetimeHelp2"
+                disabled
+              />
+            </div>
+            <div class="mb-3">
+              <label for="todo_item_update_input" class="form-label"
+                >待辦事項</label
+              >
+              <textarea
+                class="form-control"
+                id="todo_item_update_input"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success update-btn">
+              更新
+            </button>
+            <button type="button" class="btn btn-danger delete-btn">
+              刪除
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              取消
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
