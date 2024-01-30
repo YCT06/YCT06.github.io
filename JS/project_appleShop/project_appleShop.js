@@ -83,6 +83,8 @@ document.querySelectorAll('.model').forEach(button => {
         // 更換結算的機型
         let modelEN = button.textContent
         document.querySelector('.title').innerHTML = modelEN
+        //結算價格清空
+        document.querySelector('.final-price').innerHTML = ''
     });
 });
 
