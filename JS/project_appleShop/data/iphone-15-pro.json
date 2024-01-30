@@ -1,0 +1,64 @@
+[
+    {
+        "title": "iPhone 15 Pro",
+        "storage":["128GB","256GB","512GB","1TB" ],
+        "price": [36900, 40400, 47400, 54400],
+        "images": {
+            "black": [
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium_AV1.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium_AV2.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium_AV3.jpg"
+            ],
+            "blue": [
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium_AV1.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium_AV2.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium_AV3.jpg"
+            ],
+            "natural": [
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium_AV1.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium_AV2.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium_AV3.jpg"
+            ],
+            "white": [
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium_AV1.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium_AV2.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium_AV3.jpg"
+            ]
+        }
+    },
+    {
+        "title": "iPhone 15 Pro Max",
+        "storage":["256GB","512GB","1TB" ],
+        "price": [44900, 51900, 58900],
+        "images": {
+            "black": [
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium_AV1.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium_AV2.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium_AV3.jpg"
+            ],
+            "blue": [
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium_AV1.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium_AV2.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium_AV3.jpg"
+            ],
+            "natural": [
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium_AV1.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium_AV2.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium_AV3.jpg"
+            ],
+            "white": [
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium_AV1.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium_AV2.jpg",
+                "./images/iphone-15-pro/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium_AV3.jpg"
+            ]
+        }
+    }
+]
