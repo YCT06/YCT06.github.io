@@ -461,7 +461,25 @@ header {
     right: 0;
 }
 
+/* continue-browsing */
+.continue-browsing {
+    text-align: center;
+    width: 100%;
+    padding: 0px 60px;
+    margin-bottom: 50px;
+}
 
+.continue-browsing-txt {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.continue-browsing-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
 /* footer */
 .footer {
@@ -522,7 +540,8 @@ footer .footer-href {
     .swiper-button-next,
     .swiper-button-prev,
     .filter-button-set,
-    .tax-button-set {
+    .tax-button-set,
+    .continue-browsing {
         display: none;
     }
 
