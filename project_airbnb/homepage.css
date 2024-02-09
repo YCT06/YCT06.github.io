@@ -22,12 +22,15 @@ html {
     font-weight: 600;
 }
 
-header {
+.header-set {
     width: 100%;
     height: 168px;
     background-color: #FFFFFF;
     border-bottom: 1px solid #ccc;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
 }
 
 /* header-area1 */
@@ -189,6 +192,7 @@ header {
 .phone-header-set {
     width: 100%;
     height: 80px;
+    background-color: #FFFFFF;
 }
 
 .phone-header {
@@ -237,18 +241,19 @@ header {
     padding: 15px;
 }
 
-/* section-category */
-.section-set {
-    width: 100%;
-    padding: 0 60px;
-}
-
-.section-category {
+/* category-set */
+.category-set {
     display: flex;
     align-items: center;
+    width: 100%;
+    padding: 0 60px;
+    background-color: #FFFFFF;
+    position: sticky;
+    top: 168px;
+    z-index: 1000;
 }
 
-.category-set {
+.category {
     width: 80%;
 }
 
@@ -256,13 +261,13 @@ header {
     border: 0;
 }
 
-.section-set .category-content {
+.category-set .category-content {
     font-size: 12px;
     opacity: 0.5;
     transition: 0.3s;
 }
 
-.section-set .category-content:hover {
+.category-set .category-content:hover {
     opacity: 1;
 }
 
@@ -391,7 +396,10 @@ header {
 }
 
 /* section-items */
-
+.section-set {
+    width: 100%;
+    padding: 0 60px;
+}
 /* .section-items {} */
 
 .section-items .item-container {
@@ -564,8 +572,6 @@ footer .footer-href {
     }
 }
 
-
-/* header */
 @media (max-width: 768px) {
 
     .traveler-picks,
@@ -580,9 +586,19 @@ footer .footer-href {
 
     .phone-header-set {
         display: block;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
     }
 
     .category-set {
+        position: sticky;
+        top: 80px;
+        z-index: 1000;
+        padding: 0px 20px;
+    }
+
+    .category {
         width: 100%;
     }
 
