@@ -396,9 +396,9 @@ html {
 }
 
 /* section-items */
-.section-set {
+.card-section-set {
     width: 100%;
-    padding: 0 60px;
+    padding: 20px 60px;
 }
 /* .section-items {} */
 
@@ -602,7 +602,7 @@ footer .footer-href {
         width: 100%;
     }
 
-    .section-set {
+    .card-section-set {
         padding: 10px;
     }
 
