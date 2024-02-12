@@ -608,6 +608,21 @@ html {
     text-align: center;
 }
 
+/* filter-button modal */
+
+/* room-info-group */
+.quantity-filter {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.quantity-filter .button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 /* swiper */
 
