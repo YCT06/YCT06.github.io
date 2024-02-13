@@ -369,7 +369,7 @@ html {
     display: flex;
 }
 
-.search-results{
+.search-results {
     width: 60%;
 }
 
@@ -453,6 +453,7 @@ html {
 .search-results-map {
     width: 40%;
 }
+
 .search-results-map img {
     width: 100%;
 }
@@ -494,6 +495,7 @@ html {
 .footer-item li {
     margin-bottom: 12px;
 }
+
 .footer-item p {
     margin: 12px 0px;
 }
@@ -618,8 +620,39 @@ html {
     position: relative;
 }
 
+/* 預定選項 */
+/* reserve-option-group */
+
+.reserve-option-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.reserve-option-item .title {
+    font-size: 14px;
+}
+
+.reserve-option-item .sub-title {
+    font-size: 12px;
+}
+
+/* 無障礙設施與服務 */
+/* accessible */
+.accessible label {
+    font-size: 14px;
+}
+
+/* 房東語言 */
+/* language */
+.language label {
+    font-size: 14px;
+}
+
 
 @media (min-width: 768px) {
+
     .phone-header-set,
     .phone-footer-set {
         display: none;
@@ -657,7 +690,7 @@ html {
         width: 100%;
     }
 
-    .search-results{
+    .search-results {
         width: 100%;
     }
 
