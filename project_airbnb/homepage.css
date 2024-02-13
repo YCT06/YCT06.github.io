@@ -418,7 +418,7 @@ html {
     position: absolute;
     left: auto;
     right: 20px;
-    z-index: 2;
+    z-index: 1;
     font-size: 24px;
     cursor: pointer;
     color: #fff;
@@ -610,7 +610,10 @@ html {
 
 /* filter-button modal */
 
+
+/* 臥室和床鋪 */
 /* room-info-group */
+
 .quantity-filter {
     height: 100px;
     display: flex;
@@ -622,6 +625,69 @@ html {
     display: flex;
     justify-content: space-between;
 }
+
+/* 高級住宿 */
+/* sa-container */
+/* 住宿類型 */
+/* rt-container */
+
+.sa-container input:checked+div,
+.rt-container input:checked+div {
+    border-color: #000;
+    box-shadow: 0 0 2px 2px #000 inset;
+    transition: 0.3s;
+}
+
+.sa-container .sa-type,
+.rt-container .rt-type {
+    border: 1px solid rgba(150, 150, 150, 0.5);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+}
+
+.sa-container .sa-type .text {
+    font-size: 12px;
+}
+
+.rt-container .rt-type img {
+    width: 32px;
+    height: 32px;
+}
+
+/* 設備與服務 */
+/* checkbox-group */
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-group .checkbox-item {
+    width: 45%;
+    height: 45px;
+    font-size: 18px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.checkbox-group .checkbox-item input[type='checkbox'] {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.checkbox-group .checkbox-item label {
+    position: relative;
+}
+
+
+
+
 
 
 /* swiper */
