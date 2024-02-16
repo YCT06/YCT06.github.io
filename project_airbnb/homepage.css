@@ -133,11 +133,19 @@ html {
     border-radius: 1000px;
 }
 
-.location-content,
+.location-content {
+    padding: 10px 24px;
+    cursor: pointer;
+}
+
 .check-in-content,
-.check-out-content,
+.check-out-content  {
+    padding: 7px 24px;
+    cursor: pointer;
+}
+
 .guests-content {
-    padding: 14px 24px;
+    padding: 12px 24px;
     cursor: pointer;
 }
 
