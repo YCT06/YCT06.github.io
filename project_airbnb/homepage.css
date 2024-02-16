@@ -134,18 +134,18 @@ html {
 }
 
 .location-content {
-    padding: 10px 24px;
+    padding: 11px 24px;
     cursor: pointer;
 }
 
 .check-in-content,
 .check-out-content  {
-    padding: 7px 24px;
+    padding: 8px 24px;
     cursor: pointer;
 }
 
 .guests-content {
-    padding: 12px 24px;
+    padding: 12.5px 24px;
     cursor: pointer;
 }
 
