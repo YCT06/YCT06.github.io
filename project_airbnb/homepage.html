@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="traveler-picks">
+    <div class="traveler-picks container">
         <div>
             <a href="">
                 <span>了解「旅客精選」，Airbnb 上最受喜愛的口碑房源</span>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <header class="header-set">
+    <header class="header-set container">
         <div class="header-area1">
             <div class="brand-icon col">
                 <a href="">
@@ -50,7 +50,7 @@
                     <div class="information-area1 col-9">
                         <a href="">
                             <div>
-                                在 Airbnb 上發布房源
+                                在 OpenRoom 上發布房源
                             </div>
                         </a>
                         <a href="">
@@ -92,7 +92,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">在 Airbnb 上發布房源</a></li>
+                            <li><a class="dropdown-item" href="#">在 OpenRoom 上發布房源</a></li>
                             <li><a class="dropdown-item" href="#">說明中心</a></li>
                         </ul>
                     </div>
@@ -146,7 +146,7 @@
         </div>
     </header>
 
-    <div class="phone-header-set">
+    <div class="phone-header-set container">
         <div class="phone-header">
             <div class="phone-search-bar">
                 <div class="phone-search-bar-icon">
@@ -176,9 +176,9 @@
         </div>
     </div>
 
-    <div class="category-set">
+    <div class="category-set container">
         <div class="category">
-            <div class="swiper">
+            <div class="swiper swiper-category">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
@@ -316,7 +316,7 @@
         </div>
     </div>
 
-    <div class="card-section-set">
+    <div class="card-section-set container">
         <section class="section-items">
             <div class="card-group row">
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 item-container">
@@ -325,7 +325,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="./item img/HousePic001.webp" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="./item img/HousePic001.webp" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="./item img/HousePic001.webp" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="./item img/HousePic001.webp" alt="">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -534,13 +550,13 @@
     </div>
 
 
-    <div class="continue-browsing-set">
+    <div class="continue-browsing-set container">
         <div class="continue-browsing-txt">繼續瀏覽房間</div>
         <div class="continue-browsing-btn"><button type="button" class="btn btn-dark">顯示更多</button>
         </div>
     </div>
 
-    <div class="navigation-set">
+    <div class="navigation-set container">
         <h4>為下一次度假尋找靈感</h4>
         <div class="navigation-area">
             <div class="navigation-title">
@@ -625,7 +641,7 @@
         </div>
     </div>
 
-    <footer class="footer-set">
+    <footer class="footer-set container">
         <div class="footer-box1">
             <div class="footer-item col-lg-4">
                 <p class="footer-item-title">用戶支援</p>
@@ -710,7 +726,7 @@
         </div>
     </footer>
 
-    <div class="phone-footer-set">
+    <div class="phone-footer-set container">
         <div class="phone-footer-box">
             <a href="" class="phone-footer-btn">
                 <div class="phone-footer-icon">
@@ -1057,8 +1073,8 @@
                                 </div>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" role="switch"
-                                        id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                        id="flexSwitchCheckDefault1">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault1"></label>
                                 </div>
                             </div>
                             <div class="reserve-option-item">
@@ -1068,8 +1084,8 @@
                                 </div>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" role="switch"
-                                        id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                        id="flexSwitchCheckDefault2">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault2"></label>
                                 </div>
                             </div>
                             <div class="reserve-option-item">
@@ -1079,8 +1095,8 @@
                                 </div>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" role="switch"
-                                        id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                        id="flexSwitchCheckDefault3">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault3"></label>
                                 </div>
                             </div>
                         </div>
@@ -1149,22 +1165,33 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- swiper -->
     <script>
-        const swiper = new Swiper('.swiper', {
+        // category
+        const swiper = new Swiper('.swiper-category', {
             // Optional parameters
             direction: 'horizontal',
-            slidesPerView: 5,
+            slidesPerView: 6,
             spaceBetween: 20,
             allowTouchMove: true,
-
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+                nextEl: '.swiper-category .swiper-button-next',
+                prevEl: '.swiper-category .swiper-button-prev',
             },
-
             scrollbar: {
                 el: '.swiper-scrollbar',
             },
         });
+        // card-section-set
+        const swiper2 = new Swiper('.swiper-card-item', {
+            // Optional parameters
+            direction: 'horizontal',
+            allowTouchMove: true,
+
+            pagination: {
+                el: ".swiper-card-item .swiper-pagination",
+                clickable: true,
+            },
+        });
+
     </script>
     <!-- 用來開著modal用的 -->
     <!-- <script>
@@ -1195,6 +1222,8 @@
             }
         });
     </script>
+
+
 </body>
 
 </html>

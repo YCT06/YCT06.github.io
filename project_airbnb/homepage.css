@@ -1,10 +1,7 @@
 *,
 body,
 html {
-    margin: 0;
-    padding: 0;
     font-family: 'Noto Sans', sans-serif;
-    position: relative;
 }
 
 /* traveler-picks */
@@ -27,10 +24,9 @@ html {
     height: 168px;
     background-color: #FFFFFF;
     border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
     position: sticky;
     top: 0px;
-    z-index: 2;
+    z-index: 3;
 }
 
 /* header-area1 */
@@ -38,7 +34,6 @@ html {
     width: 100%;
     height: 80px;
     display: flex;
-    padding: 0 60px;
     align-items: center;
 }
 
@@ -258,12 +253,12 @@ html {
 .category-set {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     width: 100%;
-    padding: 0 60px;
     background-color: #FFFFFF;
     position: sticky;
     top: 168px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .category {
@@ -411,7 +406,6 @@ html {
 /* section-items */
 .card-section-set {
     width: 100%;
-    padding: 20px 60px;
 }
 
 /* .section-items {} */
@@ -447,7 +441,6 @@ html {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    aspect-ratio: 20/19;
     margin-bottom: 12px;
 }
 
@@ -487,7 +480,6 @@ html {
 .continue-browsing-set {
     text-align: center;
     width: 100%;
-    padding: 0px 60px;
     margin-bottom: 50px;
 }
 
@@ -590,7 +582,7 @@ html {
     background-color: #FFFFFF;
     padding: 0px 10px;
     font-size: 14px;
-    position: fixed;
+    position: sticky;
     bottom: 0px;
 
 }
@@ -751,14 +743,14 @@ html {
         display: block;
         position: sticky;
         top: 0;
-        z-index: 1;
+        z-index: 3;
     }
 
     .category-set {
         position: sticky;
         top: 80px;
         padding: 0px 20px;
-        z-index: 1;
+        z-index: 2;
     }
 
     .category {
@@ -780,7 +772,7 @@ html {
 @media (max-width: 768px) {
 
     .footer-set {
-        padding: 20px 60px 65px;
+        padding-bottom: 65px;
     }
 
     .footer-box1,
