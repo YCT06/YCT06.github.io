@@ -517,9 +517,9 @@ html {
     background-color: #FFFFFF;
     padding: 0px 10px;
     font-size: 14px;
-    position: fixed;
+    position: sticky;
     bottom: 0px;
-
+    z-index: 4;
 }
 
 .phone-footer-box {
@@ -689,7 +689,7 @@ html {
 
     .category-set {
         position: sticky;
-        top: 80px;
+        top: 78px;
         padding: 0px 20px;
         z-index: 3;
     }
