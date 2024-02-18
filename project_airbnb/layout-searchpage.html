@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="./searchpage.css">
+</head>
+
+<body>
+
+    <header class="header-set container">
+        <div class="header-area1">
+            <div class="brand-icon col">
+                <a href="">
+                    <svg width="102" height="32" style="display:block">
+                        <path
+                            d="M29.3864 22.7101C29.2429 22.3073 29.0752 21.9176 28.9157 21.5565C28.6701 21.0011 28.4129 20.4446 28.1641 19.9067L28.1444 19.864C25.9255 15.0589 23.5439 10.1881 21.0659 5.38701L20.9607 5.18316C20.7079 4.69289 20.4466 4.18596 20.1784 3.68786C19.8604 3.0575 19.4745 2.4636 19.0276 1.91668C18.5245 1.31651 17.8956 0.833822 17.1853 0.502654C16.475 0.171486 15.7005 -9.83959e-05 14.9165 4.23317e-08C14.1325 9.84805e-05 13.3581 0.171877 12.6478 0.503224C11.9376 0.834571 11.3088 1.31742 10.8059 1.91771C10.3595 2.46476 9.97383 3.05853 9.65572 3.68858C9.38521 4.19115 9.12145 4.70278 8.8664 5.19757L8.76872 5.38696C6.29061 10.1884 3.90903 15.0592 1.69015 19.8639L1.65782 19.9338C1.41334 20.463 1.16057 21.0102 0.919073 21.5563C0.75949 21.9171 0.592009 22.3065 0.448355 22.7103C0.0369063 23.8104 -0.094204 24.9953 0.0668098 26.1585C0.237562 27.334 0.713008 28.4447 1.44606 29.3804C2.17911 30.3161 3.14434 31.0444 4.24614 31.4932C5.07835 31.8299 5.96818 32.002 6.86616 32C7.14824 31.9999 7.43008 31.9835 7.71027 31.9509C8.846 31.8062 9.94136 31.4366 10.9321 30.8639C12.2317 30.1338 13.5152 29.0638 14.9173 27.5348C16.3194 29.0638 17.6029 30.1338 18.9025 30.8639C19.8932 31.4367 20.9886 31.8062 22.1243 31.9509C22.4045 31.9835 22.6864 31.9999 22.9685 32C23.8664 32.002 24.7561 31.8299 25.5883 31.4932C26.6901 31.0444 27.6554 30.3161 28.3885 29.3804C29.1216 28.4447 29.5971 27.3341 29.7679 26.1585C29.9287 24.9952 29.7976 23.8103 29.3864 22.7101ZM14.9173 24.377C13.1816 22.1769 12.0678 20.1338 11.677 18.421C11.5169 17.7792 11.4791 17.1131 11.5656 16.4573C11.6339 15.9766 11.8105 15.5176 12.0821 15.1148C12.4163 14.6814 12.8458 14.3304 13.3374 14.0889C13.829 13.8475 14.3696 13.7219 14.9175 13.7219C15.4655 13.722 16.006 13.8476 16.4976 14.0892C16.9892 14.3307 17.4186 14.6817 17.7528 15.1151C18.0244 15.5181 18.201 15.9771 18.2693 16.4579C18.3556 17.114 18.3177 17.7803 18.1573 18.4223C17.7661 20.1349 16.6526 22.1774 14.9173 24.377ZM27.7406 25.8689C27.6212 26.6908 27.2887 27.4674 26.7762 28.1216C26.2636 28.7759 25.5887 29.2852 24.8183 29.599C24.0393 29.9111 23.1939 30.0217 22.3607 29.9205C21.4946 29.8089 20.6599 29.5239 19.9069 29.0824C18.7501 28.4325 17.5791 27.4348 16.2614 25.9712C18.3591 23.3846 19.669 21.0005 20.154 18.877C20.3723 17.984 20.4196 17.0579 20.2935 16.1475C20.1791 15.3632 19.8879 14.615 19.4419 13.9593C18.9194 13.2519 18.2378 12.6768 17.452 12.2805C16.6661 11.8842 15.798 11.6777 14.9175 11.6777C14.0371 11.6777 13.1689 11.8841 12.383 12.2803C11.5971 12.6765 10.9155 13.2515 10.393 13.9589C9.94707 14.6144 9.65591 15.3624 9.5414 16.1465C9.41524 17.0566 9.4623 17.9822 9.68011 18.8749C10.1648 20.9993 11.4748 23.384 13.5732 25.9714C12.2555 27.4348 11.0845 28.4325 9.92769 29.0825C9.17468 29.5239 8.34007 29.809 7.47395 29.9205C6.64065 30.0217 5.79525 29.9111 5.0162 29.599C4.24581 29.2852 3.57092 28.7759 3.05838 28.1217C2.54585 27.4674 2.21345 26.6908 2.09411 25.8689C1.97932 25.0334 2.07701 24.1825 2.37818 23.3946C2.49266 23.0728 2.62663 22.757 2.7926 22.3818C3.0274 21.851 3.27657 21.3115 3.51759 20.7898L3.54996 20.7197C5.75643 15.9419 8.12481 11.0982 10.5894 6.32294L10.6875 6.13283C10.9384 5.64601 11.1979 5.14267 11.4597 4.6563C11.7101 4.15501 12.0132 3.68171 12.3639 3.2444C12.6746 2.86903 13.0646 2.56681 13.5059 2.35934C13.9473 2.15186 14.4291 2.04426 14.9169 2.04422C15.4047 2.04418 15.8866 2.15171 16.3279 2.35911C16.7693 2.56651 17.1593 2.86867 17.4701 3.24399C17.821 3.68097 18.1242 4.15411 18.3744 4.65538C18.6338 5.13742 18.891 5.63623 19.1398 6.11858L19.2452 6.32315C21.7097 11.0979 24.078 15.9415 26.2847 20.7201L26.3046 20.7631C26.5498 21.2936 26.8033 21.8419 27.042 22.382C27.2082 22.7577 27.3424 23.0738 27.4566 23.3944C27.7576 24.1824 27.8553 25.0333 27.7406 25.8689Z"
+                            fill="currentcolor"></path>
+                        <path
+                            d="M41.6847 24.1196C40.8856 24.1196 40.1505 23.9594 39.4792 23.6391C38.808 23.3188 38.2327 22.8703 37.7212 22.2937C37.2098 21.7172 36.8263 21.0445 36.5386 20.3078C36.2509 19.539 36.123 18.7062 36.123 17.8093C36.123 16.9124 36.2829 16.0475 36.5705 15.2787C36.8582 14.51 37.2737 13.8373 37.7852 13.2287C38.2966 12.6521 38.9039 12.1716 39.6071 11.8513C40.3103 11.531 41.0455 11.3708 41.8765 11.3708C42.6756 11.3708 43.3788 11.531 44.0181 11.8833C44.6574 12.2037 45.1688 12.6841 45.5843 13.2927L45.6802 11.7232H48.6209V23.7992H45.6802L45.5843 22.0375C45.1688 22.6781 44.6254 23.1906 43.9222 23.575C43.2829 23.9274 42.5158 24.1196 41.6847 24.1196ZM42.4519 21.2367C43.0272 21.2367 43.5386 21.0765 44.0181 20.7882C44.4656 20.4679 44.8172 20.0515 45.1049 19.539C45.3606 19.0265 45.4884 18.4179 45.4884 17.7452C45.4884 17.0725 45.3606 16.4639 45.1049 15.9514C44.8492 15.4389 44.4656 15.0225 44.0181 14.7022C43.5706 14.3818 43.0272 14.2537 42.4519 14.2537C41.8765 14.2537 41.3651 14.4139 40.8856 14.7022C40.4382 15.0225 40.0866 15.4389 39.7989 15.9514C39.5432 16.4639 39.4153 17.0725 39.4153 17.7452C39.4153 18.4179 39.5432 19.0265 39.7989 19.539C40.0546 20.0515 40.4382 20.4679 40.8856 20.7882C41.3651 21.0765 41.8765 21.2367 42.4519 21.2367ZM53.6392 8.4559C53.6392 8.80825 53.5753 9.12858 53.4154 9.38483C53.2556 9.64109 53.0319 9.86531 52.7442 10.0255C52.4565 10.1856 52.1369 10.2497 51.8173 10.2497C51.4976 10.2497 51.178 10.1856 50.8903 10.0255C50.6026 9.86531 50.3789 9.64109 50.2191 9.38483C50.0592 9.09654 49.9953 8.80825 49.9953 8.4559C49.9953 8.10355 50.0592 7.78323 50.2191 7.52697C50.3789 7.23868 50.6026 7.04649 50.8903 6.88633C51.178 6.72617 51.4976 6.66211 51.8173 6.66211C52.1369 6.66211 52.4565 6.72617 52.7442 6.88633C53.0319 7.04649 53.2556 7.27072 53.4154 7.52697C53.5433 7.78323 53.6392 8.07152 53.6392 8.4559ZM50.2191 23.7672V11.6911H53.4154V23.7672H50.2191V23.7672ZM61.9498 14.8623V14.8943C61.79 14.8303 61.5982 14.7982 61.4383 14.7662C61.2466 14.7342 61.0867 14.7342 60.895 14.7342C60 14.7342 59.3287 14.9904 58.8812 15.535C58.4018 16.0795 58.178 16.8483 58.178 17.8413V23.7672H54.9817V11.6911H57.9223L58.0182 13.517C58.3379 12.8763 58.7214 12.3958 59.2648 12.0435C59.7762 11.6911 60.3835 11.531 61.0867 11.531C61.3105 11.531 61.5342 11.563 61.726 11.595C61.8219 11.6271 61.8858 11.6271 61.9498 11.6591V14.8623ZM63.2283 23.7672V6.72617H66.4247V13.2287C66.8722 12.6521 67.3836 12.2036 68.0229 11.8513C68.6622 11.531 69.3654 11.3388 70.1645 11.3388C70.9635 11.3388 71.6987 11.4989 72.3699 11.8193C73.0412 12.1396 73.6165 12.588 74.128 13.1646C74.6394 13.7412 75.0229 14.4139 75.3106 15.1506C75.5983 15.9194 75.7261 16.7522 75.7261 17.6491C75.7261 18.546 75.5663 19.4109 75.2787 20.1796C74.991 20.9484 74.5755 21.6211 74.064 22.2297C73.5526 22.8063 72.9453 23.2867 72.2421 23.6071C71.5389 23.9274 70.8037 24.0875 69.9727 24.0875C69.1736 24.0875 68.4704 23.9274 67.8311 23.575C67.1918 23.2547 66.6804 22.7742 66.2649 22.1656L66.169 23.7352L63.2283 23.7672ZM69.3973 21.2367C69.9727 21.2367 70.4841 21.0765 70.9635 20.7882C71.411 20.4679 71.7626 20.0515 72.0503 19.539C72.306 19.0265 72.4339 18.4179 72.4339 17.7452C72.4339 17.0725 72.306 16.4639 72.0503 15.9514C71.7626 15.4389 71.411 15.0225 70.9635 14.7022C70.5161 14.3818 69.9727 14.2537 69.3973 14.2537C68.822 14.2537 68.3106 14.4139 67.8311 14.7022C67.3836 15.0225 67.032 15.4389 66.7443 15.9514C66.4886 16.4639 66.3608 17.0725 66.3608 17.7452C66.3608 18.4179 66.4886 19.0265 66.7443 19.539C67 20.0515 67.3836 20.4679 67.8311 20.7882C68.3106 21.0765 68.822 21.2367 69.3973 21.2367ZM76.9408 23.7672V11.6911H79.8814L79.9773 13.2607C80.3289 12.6841 80.8084 12.2357 81.4157 11.8833C82.023 11.531 82.7262 11.3708 83.5253 11.3708C84.4203 11.3708 85.1874 11.595 85.8267 12.0115C86.4979 12.4279 87.0094 13.0365 87.361 13.8053C87.7126 14.574 87.9043 15.5029 87.9043 16.56V23.7992H84.708V16.9764C84.708 16.1436 84.5162 15.4709 84.1326 14.9904C83.7491 14.51 83.2376 14.2537 82.5664 14.2537C82.0869 14.2537 81.6714 14.3498 81.2878 14.574C80.9362 14.7982 80.6486 15.0865 80.4248 15.503C80.2011 15.8873 80.1052 16.3678 80.1052 16.8483V23.7672H76.9408V23.7672ZM89.5025 23.7672V6.72617H92.6989V13.2287C93.1464 12.6521 93.6578 12.2036 94.2971 11.8513C94.9364 11.531 95.6396 11.3388 96.4387 11.3388C97.2378 11.3388 97.9729 11.4989 98.6442 11.8193C99.3154 12.1396 99.8907 12.588 100.402 13.1646C100.914 13.7412 101.297 14.4139 101.585 15.1506C101.873 15.9194 102 16.7522 102 17.6491C102 18.546 101.841 19.4109 101.553 20.1796C101.265 20.9484 100.85 21.6211 100.338 22.2297C99.8268 22.8063 99.2195 23.2867 98.5163 23.6071C97.8131 23.9274 97.0779 24.0875 96.2469 24.0875C95.4478 24.0875 94.7446 23.9274 94.1053 23.575C93.466 23.2547 92.9546 22.7742 92.5391 22.1656L92.4432 23.7352L89.5025 23.7672ZM95.7035 21.2367C96.2788 21.2367 96.7903 21.0765 97.2697 20.7882C97.7172 20.4679 98.0688 20.0515 98.3565 19.539C98.6122 19.0265 98.7401 18.4179 98.7401 17.7452C98.7401 17.0725 98.6122 16.4639 98.3565 15.9514C98.1008 15.4389 97.7172 15.0225 97.2697 14.7022C96.8222 14.3818 96.2788 14.2537 95.7035 14.2537C95.1281 14.2537 94.6167 14.4139 94.1373 14.7022C93.6898 15.0225 93.3382 15.4389 93.0505 15.9514C92.7628 16.4639 92.6669 17.0725 92.6669 17.7452C92.6669 18.4179 92.7948 19.0265 93.0505 19.539C93.3062 20.0515 93.6898 20.4679 94.1373 20.7882C94.6167 21.0765 95.0962 21.2367 95.7035 21.2367Z"
+                            fill="currentcolor"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="mini-search-area col">
+                <div class="mini-search-bar">
+                    <div class="location ">
+                        <div class="location-content">
+                            <div>任何地點</div>
+                        </div>
+                    </div>
+                    <div class="check-in-time ">
+                        <div class="check-in-time-content">
+                            <div>任何時間</div>
+                        </div>
+                    </div>
+                    <div class="guests ">
+                        <div class="guests-content">
+                            <div>新增人數</div>
+                        </div>
+                        <span class="search-btn">
+                            <div class="search-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                                    role="presentation" focusable="false"
+                                    style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                                    <path fill="none" d="M13 24a11 11 0 1 0 0-22 11 11 0 0 0 0 22zm8-3 9 9"></path>
+                                </svg>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="information col">
+                <div class="information-area">
+                    <div class="information-area1 col-9">
+                        <a href="">
+                            <div>
+                                在 OpenRoom 上發布房源
+                            </div>
+                        </a>
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true"
+                                role="presentation" focusable="false"
+                                style="display: block; height: 16px; width: 16px; fill: currentcolor;">
+                                <path
+                                    d="M8 .25a7.77 7.77 0 0 1 7.75 7.78 7.75 7.75 0 0 1-7.52 7.72h-.25A7.75 7.75 0 0 1 .25 8.24v-.25A7.75 7.75 0 0 1 8 .25zm1.95 8.5h-3.9c.15 2.9 1.17 5.34 1.88 5.5H8c.68 0 1.72-2.37 1.93-5.23zm4.26 0h-2.76c-.09 1.96-.53 3.78-1.18 5.08A6.26 6.26 0 0 0 14.17 9zm-9.67 0H1.8a6.26 6.26 0 0 0 3.94 5.08 12.59 12.59 0 0 1-1.16-4.7l-.03-.38zm1.2-6.58-.12.05a6.26 6.26 0 0 0-3.83 5.03h2.75c.09-1.83.48-3.54 1.06-4.81zm2.25-.42c-.7 0-1.78 2.51-1.94 5.5h3.9c-.15-2.9-1.18-5.34-1.89-5.5h-.07zm2.28.43.03.05a12.95 12.95 0 0 1 1.15 5.02h2.75a6.28 6.28 0 0 0-3.93-5.07z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="information-area2 col-3">
+                        <div class="member-btn dropdown-toggle" id="member-button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                                    role="presentation" focusable="false"
+                                    style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                    <g fill="none">
+                                        <path d="M2 16h28M2 24h28M2 8h28"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="member-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
+                                    role="presentation" focusable="false"
+                                    style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                                    <path
+                                        d="M16 .7C7.56.7.7 7.56.7 16S7.56 31.3 16 31.3 31.3 24.44 31.3 16 24.44.7 16 .7zm0 28c-4.02 0-7.6-1.88-9.93-4.81a12.43 12.43 0 0 1 6.45-4.4A6.5 6.5 0 0 1 9.5 14a6.5 6.5 0 0 1 13 0 6.51 6.51 0 0 1-3.02 5.5 12.42 12.42 0 0 1 6.45 4.4A12.67 12.67 0 0 1 16 28.7z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- 會員按鈕下拉選單 -->
+                        <ul class="dropdown-menu" aria-labelledby="member-button">
+                            <li><a class="dropdown-item" href="#">登入</a></li>
+                            <li><a class="dropdown-item" href="#">註冊</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">在 OpenRoom 上發布房源</a></li>
+                            <li><a class="dropdown-item" href="#">說明中心</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="phone-header-set container">
+        <div class="phone-header">
+            <div class="phone-search-bar">
+                <div class="phone-search-bar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                        focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor;">
+                        <path
+                            d="M13 0a13 13 0 0 1 10.5 20.67l7.91 7.92-2.82 2.82-7.92-7.91A12.94 12.94 0 0 1 13 26a13 13 0 1 1 0-26zm0 4a9 9 0 1 0 0 18 9 9 0 0 0 0-18z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="phone-search-bar-text">
+                    <div>任何地方</div>
+                    <div>任一周 .新增人數</div>
+                </div>
+            </div>
+            <div class="phone-filter-button" data-bs-toggle="modal" data-bs-target="#filter-button">
+                <div class="phone-filter-button-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                        focusable="false"
+                        style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                        <path fill="none"
+                            d="M7 16H3m26 0H15M29 6h-4m-8 0H3m26 20h-4M7 16a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM17 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 20a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 0H3">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-set container">
+        <div class="category">
+            <div class="swiper swiper-category">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/01.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>城堡</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/02.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>露營</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/03.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>湖泊</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/04.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>台灣民宿</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/05.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>海邊</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/06.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>房間</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/07.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>國家公園</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/08.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>小木屋</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/09.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>莊園</p>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button class="btn category-btn">
+                            <div class="category-content">
+                                <div class="icon-container">
+                                    <img src="./category img/10.jpg" alt="category icon" class="category-icon">
+                                </div>
+                                <p>生態屋</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div>
+
+        </div>
+        <div class="filter-button-set">
+            <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filter-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                    focusable="false"
+                    style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                    <path fill="none"
+                        d="M7 16H3m26 0H15M29 6h-4m-8 0H3m26 20h-4M7 16a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM17 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 20a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 0H3">
+                    </path>
+                </svg>
+                <span class="filter-span">篩選條件</span>
+            </button>
+        </div>
+        <div class="tax-button-set">
+            <button type="button" class="tax-button">
+                <span class="tax-span">顯示稅前總價</span>
+                <label class="tax-toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </button>
+        </div>
+    </div>
+
+    <!-- view插入區 -->
+
+    <footer class="footer-set container">
+        <div class="footer-box1">
+            <div class="footer-item col-lg-4">
+                <p class="footer-item-title">用戶支援</p>
+                <ul>
+                    <li>
+                        <a href="#">說明中心</a>
+                    </li>
+                    <li>
+                        <a href="#">因安全問題而需要協助</a>
+                    </li>
+                    <li>
+                        <a href="#">OpenCover</a>
+                    </li>
+                    <li>
+                        <a href="#">反歧視</a>
+                    </li>
+                    <li>
+                        <a href="#">身心障礙支援</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-item col-lg-4">
+                <p class="footer-item-title">出租房源和舉辦體驗</p>
+                <ul>
+                    <li>
+                        <a href="#">在 OpenRoom 上發布房源</a>
+                    </li>
+                    <li>
+                        <a href="#">專為房東提供的 OpenCover</a>
+                    </li>
+                    <li>
+                        <a href="#">出租和舉辦體驗的相關資源</a>
+                    </li>
+                    <li>
+                        <a href="#">社區論壇</a>
+                    </li>
+                    <li>
+                        <a href="#">房東及體驗達人義務援</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-item col-lg-4">
+                <p class="footer-item-title">OpenRoom</p>
+                <ul>
+                    <li>
+                        <a href="#">OpenRoom 新聞中心</a>
+                    </li>
+                    <li>
+                        <a href="#">全新功能</a>
+                    </li>
+                    <li>
+                        <a href="#">工作機會</a>
+                    </li>
+                    <li>
+                        <a href="#">投資人</a>
+                    </li>
+                    <li>
+                        <a href="#">緊急住宿</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-box2">
+            <div class="footer-copyright">
+                <span>© 2024 OpenRoom, Inc.</span>
+                <span>·</span>
+                <a href="#">隱私</a>
+                <span>·</span>
+                <a href="#">相關條款</a>
+                <span>·</span>
+                <a href="#">網站地圖</a>
+            </div>
+            <div class="footer-international-and-icon">
+                <i class="fa-solid fa-earth-americas fa-lg"></i>
+                <a href="#">繁體中文 (TW)</a>
+                <a href="#">$ TWD</a>
+                <i class="fa-brands fa-square-facebook fa-lg"></i>
+                <i class="fa-brands fa-line fa-lg"></i>
+                <i class="fa-brands fa-square-x-twitter fa-lg"></i>
+                <i class="fa-brands fa-square-instagram fa-lg"></i>
+            </div>
+        </div>
+    </footer>
+
+    <div class="phone-footer-set container">
+        <div class="phone-footer-box">
+            <a href="" class="phone-footer-btn">
+                <div class="phone-footer-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                        focusable="false"
+                        style="display: block; fill: none; height: 24px; width: 24px; stroke: currentcolor; stroke-width: 2.66667; overflow: visible;">
+                        <g fill="none">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="m19 19 11 11"></path>
+                        </g>
+                    </svg>
+                </div>
+                <div class="phone-footer-txt">探索</div>
+            </a>
+            <a href="" class="phone-footer-btn">
+                <div class="phone-footer-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                        focusable="false"
+                        style="display: block; fill: none; height: 24px; width: 24px; stroke: currentcolor; stroke-width: 2; overflow: visible;">
+                        <path
+                            d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="phone-footer-txt">心願單</div>
+            </a>
+            <a href="" class="phone-footer-btn">
+                <div class="phone-footer-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                        focusable="false"
+                        style="display: block; fill: none; height: 24px; width: 24px; stroke: currentcolor; stroke-width: 2; overflow: visible;">
+                        <g fill="none">
+                            <circle cx="16" cy="16" r="14"></circle>
+                            <path
+                                d="M14.02 19.66a6 6 0 1 1 3.96 0M17.35 19.67H18c3.69.61 6.8 2.91 8.54 6.08m-20.92-.27A12.01 12.01 0 0 1 14 19.67h.62">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+                <div class="phone-footer-txt">登入</div>
+            </a>
+        </div>
+    </div>
+
+
+    <!-- filter-button modal -->
+    <div class="modal fade" id="filter-button" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">篩選條件</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section>
+                        <h4>房源類型</h4>
+                        <div>搜尋房間、整套房源等任何類型的住宿。</div>
+                        <div class="d-flex justify-content-center p-2">
+                            <div class="btn-group btn-group-lg" role="group"
+                                aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                                    checked>
+                                <label class="btn btn-outline-dark" for="btnradio1">任何類型</label>
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <label class="btn btn-outline-dark" for="btnradio2">房間</label>
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                <label class="btn btn-outline-dark" for="btnradio3">整套房源</label>
+                            </div>
+                        </div>
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>價格範圍</h4>
+                        <label for="customRange1" class="form-label">Example range</label>
+                        <input type="range" class="form-range" id="customRange1">
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>臥室和床舖</h4>
+                        <div class="room-info-group">
+                            <div class="quantity-filter">
+                                <h4>臥室</h4>
+                                <div class="button-group room-quantity">
+                                    <input type="radio" name="bedrooms" id="br0" value="0" checked="checked"
+                                        class="btn btn-check d-none">
+                                    <label for="br0" class="btn btn-outline-dark">任何</label>
+                                    <div>
+                                        <input type="radio" name="bedrooms" id="br1" class="btn btn-check d-none"
+                                            value="1">
+                                        <label for="br1" class="btn btn-outline-dark">1</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="bedrooms" id="br2" class="btn btn-check d-none"
+                                            value="2">
+                                        <label for="br2" class="btn btn-outline-dark">2</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="bedrooms" id="br3" class="btn btn-check d-none"
+                                            value="3">
+                                        <label for="br3" class="btn btn-outline-dark">3</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="bedrooms" id="br4" class="btn btn-check d-none"
+                                            value="4">
+                                        <label for="br4" class="btn btn-outline-dark">4</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="bedrooms" id="br5" class="btn btn-check d-none"
+                                            value="5">
+                                        <label for="br5" class="btn btn-outline-dark">5</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="bedrooms" id="br6" class="btn btn-check d-none"
+                                            value="6">
+                                        <label for="br6" class="btn btn-outline-dark">6</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="bedrooms" id="br7" class="btn btn-check d-none"
+                                            value="7">
+                                        <label for="br7" class="btn btn-outline-dark">7</label>
+                                    </div>
+                                    <input type="radio" name="bedrooms" id="br8" value="8" class="btn btn-check d-none">
+                                    <label for="br8" class="btn btn-outline-dark">8+</label>
+                                </div>
+                            </div>
+                            <div class="quantity-filter">
+                                <h4>床位</h4>
+                                <div class="button-group room-quantity">
+                                    <input type="radio" id="bd0" name="beds" value="0" checked="checked"
+                                        class="btn btn-check d-none">
+                                    <label for="bd0" class="btn btn-outline-dark">任何</label>
+                                    <div>
+                                        <input type="radio" id="bd1" name="beds" class="btn btn-check d-none" value="1">
+                                        <label for="bd1" class="btn btn-outline-dark">1</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bd2" name="beds" class="btn btn-check d-none" value="2">
+                                        <label for="bd2" class="btn btn-outline-dark">2</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bd3" name="beds" class="btn btn-check d-none" value="3">
+                                        <label for="bd3" class="btn btn-outline-dark">3</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bd4" name="beds" class="btn btn-check d-none" value="4">
+                                        <label for="bd4" class="btn btn-outline-dark">4</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bd5" name="beds" class="btn btn-check d-none" value="5">
+                                        <label for="bd5" class="btn btn-outline-dark">5</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bd6" name="beds" class="btn btn-check d-none" value="6">
+                                        <label for="bd6" class="btn btn-outline-dark">6</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bd7" name="beds" class="btn btn-check d-none" value="7">
+                                        <label for="bd7" class="btn btn-outline-dark">7</label>
+                                    </div>
+                                    <input type="radio" id="bd8" name="beds" value="8" class="btn btn-check d-none">
+                                    <label for="bd8" class="btn btn-outline-dark">8+</label>
+                                </div>
+                            </div>
+                            <div class="quantity-filter">
+                                <h4>衛浴</h4>
+                                <div class="button-group room-quantity">
+                                    <input type="radio" value="0" id="bath0" name="bathrooms" checked="checked"
+                                        class="btn btn-check d-none">
+                                    <label for="bath0" class="btn btn-outline-dark">任何</label>
+                                    <div>
+                                        <input type="radio" id="bath1" name="bathrooms" class="btn btn-check d-none"
+                                            value="1">
+                                        <label for="bath1" class="btn btn-outline-dark">1</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bath2" name="bathrooms" class="btn btn-check d-none"
+                                            value="2">
+                                        <label for="bath2" class="btn btn-outline-dark">2</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bath3" name="bathrooms" class="btn btn-check d-none"
+                                            value="3">
+                                        <label for="bath3" class="btn btn-outline-dark">3</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bath4" name="bathrooms" class="btn btn-check d-none"
+                                            value="4">
+                                        <label for="bath4" class="btn btn-outline-dark">4</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bath5" name="bathrooms" class="btn btn-check d-none"
+                                            value="5">
+                                        <label for="bath5" class="btn btn-outline-dark">5</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bath6" name="bathrooms" class="btn btn-check d-none"
+                                            value="6">
+                                        <label for="bath6" class="btn btn-outline-dark">6</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="bath7" name="bathrooms" class="btn btn-check d-none"
+                                            value="7">
+                                        <label for="bath7" class="btn btn-outline-dark">7</label>
+                                    </div>
+                                    <input type="radio" value="8" id="bath8" name="bathrooms"
+                                        class="btn btn-check d-none">
+                                    <label for="bath8" class="btn btn-outline-dark">8+</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>高級住宿</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="sa-container">
+                                    <input type="checkbox" id="sa1" class="d-none">
+                                    <div class="sa-type">
+                                        <label for="sa1">
+                                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                                aria-hidden="true" role="presentation" focusable="false"
+                                                style="display: block; height: 40px; width: 40px; fill: currentcolor;">
+                                                <path
+                                                    d="m26.3732689 2.47961624.6167441.48322004c1.7072543 1.33763663 2.6054782 2.90952832 2.6054782 4.67605261 0 .3660905-.0390268.72618704-.116891 1.07902433.2220822-.04940579.4535208-.09078168.6921664-.12465571l.775726-.11010878.2925061.72685288c.8097073 2.01205449.8016461 3.82246449-.0816161 5.35231939-.2032148.3519785-.4424546.6712615-.7165374.9579743l.2224321.0794128.9515555.3797252-.1101088.7757261c-.3048001 2.1473439-1.2169863 3.7111744-2.7468413 4.5944365-.5761025.332613-1.1919899.5411159-1.8434482.6285758.1841168.1929555.3637753.4031581.5393959.6273064l.48322.6167441-.48322.6167441c-1.3376366 1.7072543-2.9095283 2.6054781-4.6760526 2.6054781-1.2480882 0-2.4019214-.4496183-3.4432232-1.3171892l-.0012213.0394115c0 1.2886644 1.044669 2.3333333 2.3333334 2.3333333.5522847 0 1 .4477153 1 1s-.4477153 1-1 1c-2.3932339 0-4.3333334-1.9400994-4.3333334-4.3333333 0-.9731196.3231417-1.8972354.901435-2.6461065.0487133-.1124489.1099252-.2143841.183909-.2995515.2333023-.2685692.4731075-.5134836.719657-.7345023 1.092313-.9792012 2.3169607-1.4865064 3.6394435-1.4865064l.0684312.0004504c.3275052-1.8187509 1.1205491-3.1889128 2.3863714-4.0426116-.4569936-1.4757574-.4468151-2.8322754.0552629-4.0354282-1.4028349-1.2488618-2.1367966-2.68667211-2.1367966-4.28352171 0-1.76652429.8982238-3.33841598 2.6054781-4.67605261zm-3.5954911 19.52038376c-.8090047 0-1.5656514.3134377-2.3044395.9757225l-.1826884.1713488-.0733166.074262.1281937.1295236c.7776797.743284 1.5802193 1.0935875 2.4322508 1.0935875l.218427-.0078032c.7972463-.0573203 1.5547873-.4315014 2.2882491-1.1577185l.0555461-.056256-.0555461-.057145c-.8001401-.7922368-1.6289366-1.1655217-2.5066761-1.1655217zm3.7578827-4.4994059-.1852617.1159713c-.6617754.448264-1.1307346 1.1510849-1.4028227 2.1467382l-.0182612.0759557.0749618.0222525c1.0890601.2860271 1.9934613.1949031 2.753606-.2439667l.1852618-.1159712c.6617753-.4482641 1.1307346-1.1510849 1.4028226-2.1467383l.0193478-.0769097-.0760483-.0212985c-1.0890601-.2860271-1.9934613-.194903-2.7536061.2439667zm3.1123395-6.7679274-.0769097.0193477c-1.0861673.2968233-1.8238397.8279397-2.2627095 1.5880844l-.1024557.1930649c-.3489823.7190957-.4037025 1.5622361-.141511 2.5605412l.0222526.0749618.0759556-.0182613c1.0861673-.2968233 1.8238397-.8279397 2.2627095-1.5880844s.5299938-1.664546.2439667-2.7536061zm-3.2751755-5.65600003-.0562561.05554607c-.7922368.80014014-1.1655217 1.62893662-1.1655217 2.50667615l.0078032.21842698c.0573204.7972463.4315015 1.55478738 1.1577185 2.28824913l.0575894.0537683.0189905-.0176348c.505107-.50232394.8443631-1.01414101 1.0296433-1.53660354.1153772-.32534636.1726996-.65911739.1726996-1.00620607 0-.87773953-.3732849-1.70653601-1.1655217-2.50667615zm-20.9125938-2.59705043-.6167441.48322004c-1.70725429 1.33763663-2.60547812 2.90952832-2.60547812 4.67605261 0 .3660905.03902677.72618704.11689093 1.07902433-.22208221-.04940579-.45352077-.09078168-.69216632-.12465571l-.77572608-.11010878-.29250604.72685288c-.80970728 2.01205449-.80164608 3.82246449.08161606 5.35231939.20321486.3519785.44245466.6712615.71653743.9579743l-.2224321.0794128-.95155553.3797252.11010879.7757261c.30480015 2.1473439 1.21698637 3.7111744 2.74684128 4.5944365.57610257.332613 1.19198995.5411159 1.84344825.6285758-.18411676.1929555-.36377531.4031581-.53939589.6273064l-.48322004.6167441.48322004.6167441c1.33763662 1.7072543 2.90952832 2.6054781 4.67605261 2.6054781 1.24808813 0 2.40192143-.4496183 3.44322313-1.3171892l.0012213.0394115c0 1.2886644-1.0446689 2.3333333-2.3333333 2.3333333-.55228477 0-1.00000002.4477153-1.00000002 1s.44771525 1 1.00000002 1c2.3932339 0 4.3333333-1.9400994 4.3333333-4.3333333 0-.9731196-.3231417-1.8972354-.901435-2.6461065-.0487133-.1124489-.1099252-.2143841-.1839089-.2995515-.2333024-.2685692-.4731075-.5134836-.7196571-.7345023-1.092313-.9792012-2.3169606-1.4865064-3.63944343-1.4865064l-.06843124.0004504c-.32750516-1.8187509-1.12054908-3.1889128-2.38637136-4.0426116.45699357-1.4757574.44681506-2.8322754-.05526292-4.0354282 1.40283491-1.2488618 2.13679658-2.68667211 2.13679658-4.28352171 0-1.76652429-.89822383-3.33841598-2.60547813-4.67605261zm3.59549117 19.52038376c.8090047 0 1.56565133.3134377 2.30443953.9757225l.1826884.1713488.0733165.074262-.1281937.1295236c-.7776796.743284-1.58021923 1.0935875-2.43225073 1.0935875l-.21842698-.0078032c-.7972463-.0573203-1.55478738-.4315014-2.28824918-1.1577185l-.05554607-.056256.05554607-.057145c.80014014-.7922368 1.62893662-1.1655217 2.50667616-1.1655217zm-3.75788275-4.4994059.18526172.1159713c.66177537.448264 1.13073465 1.1510849 1.40282266 2.1467382l.01826127.0759557-.07496179.0222525c-1.08906009.2860271-1.99346135.1949031-2.75360608-.2439667l-.18526171-.1159712c-.66177538-.4482641-1.13073465-1.1510849-1.40282267-2.1467383l-.01934775-.0769097.07604828-.0212985c1.08906008-.2860271 1.99346134-.194903 2.75360607.2439667zm-3.11233948-6.7679274.07690971.0193477c1.08616726.2968233 1.82383971.8279397 2.26270948 1.5880844l.10245572.1930649c.34898228.7190957.40370248 1.5622361.14151095 2.5605412l-.02225252.0749618-.07595567-.0182613c-1.08616726-.2968233-1.8238397-.8279397-2.26270947-1.5880844s-.5299938-1.664546-.24396668-2.7536061zm3.27517551-5.65600003.05625608.05554607c.7922368.80014014 1.1655217 1.62893662 1.1655217 2.50667615l-.0078032.21842698c-.05732034.7972463-.43150144 1.55478738-1.1577185 2.28824913l-.05758942.0537683-.01899046-.0176348c-.50510698-.50232394-.84436314-1.01414101-1.02964333-1.53660354-.11537714-.32534636-.17269954-.65911739-.17269954-1.00620607 0-.87773953.3732849-1.70653601 1.1655217-2.50667615z">
+                                                </path>
+                                            </svg>
+                                            <div class="title">旅客精選</div>
+                                            <div class="text">Airbnb 上最受房客喜愛的房源</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="sa-container">
+                                    <input type="checkbox" id="sa2" class="d-none">
+                                    <div class="sa-type">
+                                        <label for="sa2" class="">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                aria-hidden="true" role="presentation" focusable="false"
+                                                style="display: block; height: 40px; width: 40px; fill: currentcolor;">
+                                                <path
+                                                    d="M0 18v-2h1.3A15.02 15.02 0 0 1 13.27 4.25a3 3 0 1 1 5.46 0c6 1.1 10.76 5.78 11.97 11.75H32v2zM16 6A13 13 0 0 0 3.35 16h25.3A13 13 0 0 0 16 6zm0-4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7.55 18.1a3.24 3.24 0 0 1 3.07 5.7l-.17.1-9.63 4.82a5 5 0 0 1-3.23.43l-.25-.05-7.84-2.01A2 2 0 0 1 4 27.31V22a2 2 0 0 1 1.85-2h11.26l.14.01L19 20c.92.01 1.44.7 1.57 1.59zm2.56 2.35a1.24 1.24 0 0 0-1.54-.6l-.12.04-4.37 2.19a3.89 3.89 0 0 1-3.34 1.91l-.24.01H12v-2h5a2 2 0 0 0 2-1.85V22l-3.7.02h-1.58L12.6 22l-.6-.01H6v5.15l7.83 2.01a3 3 0 0 0 1.9-.13l.2-.1 9.62-4.82c.61-.3.86-1.05.56-1.66z">
+                                                </path>
+                                            </svg>
+                                            <div class="title">Airbnb Luxe</div>
+                                            <div class="text">擁有高質感設計且通過品質檢驗的絕佳住宿</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>住宿類型</h4>
+                        <div class="row  room-type">
+                            <div class="col-sm-6">
+                                <div class="rt-container">
+                                    <input type="checkbox" id="rt1" class="d-none">
+                                    <div class="rt-type">
+                                        <label for="rt1">
+                                            <img src="./icon img/房屋.jpg" alt="">
+                                            <div class="title">獨棟房屋</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="rt-container">
+                                    <input type="checkbox" id="rt2" class="d-none">
+                                    <div class="rt-type">
+                                        <label for="rt2" class="">
+                                            <img src="./icon img/公寓.jpg" alt="">
+                                            <div class="title">公寓</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="rt-container">
+                                    <input type="checkbox" id="rt3" class="d-none">
+                                    <div class="rt-type">
+                                        <label for="rt3">
+                                            <img src="./icon img/小屋.jpg" alt="">
+                                            <div class="title">待客小屋</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="rt-container">
+                                    <input type="checkbox" id="rt4" class="d-none">
+                                    <div class="rt-type">
+                                        <label for="rt4">
+                                            <img src="./icon img/飯店.jpg" alt="">
+                                            <div class="title">飯店</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>設備與服務</h4>
+                        <div>基本設施</div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="services1">
+                                <label for="services1">Wifi</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="services2">
+                                <label for="services2">廚房</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="services3">
+                                <label for="services3">洗衣機</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="services4">
+                                <label for="services4">烘衣機</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="services5">
+                                <label for="services5">空調設備</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="services6">
+                                <label for="services6">暖氣</label>
+                            </div>
+                        </div>
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>預定選項</h4>
+                        <div class="reserve-option-group">
+                            <div class="reserve-option-item">
+                                <div class="title-group">
+                                    <div class="title">即時預訂</div>
+                                    <div class="sub-title">無需等待房東批准即可預訂的房源</div>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="flexSwitchCheckDefault1">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault1"></label>
+                                </div>
+                            </div>
+                            <div class="reserve-option-item">
+                                <div class="title-group">
+                                    <div class="title">自助入住</div>
+                                    <div class="sub-title">抵達後可輕鬆進入房源</div>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="flexSwitchCheckDefault2">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault2"></label>
+                                </div>
+                            </div>
+                            <div class="reserve-option-item">
+                                <div class="title-group">
+                                    <div class="title">允許攜帶寵物</div>
+                                    <div class="sub-title">會攜帶服務性動物嗎？</div>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="flexSwitchCheckDefault3">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault3"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>無障礙設施與服務</h4>
+                        <div class="checkbox-group accessible">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="accessible1">
+                                <label for="accessible1">房客入口無台階</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="accessible2">
+                                <label for="accessible2">房客入口寬度超過 81 公分</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="accessible3">
+                                <label for="accessible3">無障礙停車位</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="accessible4">
+                                <label for="accessible4">房客入口通道無台階</label>
+                            </div>
+                            <div>顯示更多內容</div>
+                        </div>
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>房東語言</h4>
+                        <div class="checkbox-group language">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="language1">
+                                <label for="language1">英語</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="language2">
+                                <label for="language2">法語</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="language3">
+                                <label for="language3">日語</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="language4">
+                                <label for="language4">義大利語</label>
+                            </div>
+                            <div>顯示更多內容</div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-light">清除全部</button>
+                    <button type="button" class="btn btn-dark">顯示房源</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- swiper -->
+    <script>
+        // category
+        const swiper = new Swiper('.swiper-category', {
+            // Optional parameters
+            direction: 'horizontal',
+            slidesPerView: 6,
+            spaceBetween: 20,
+            allowTouchMove: true,
+            navigation: {
+                nextEl: '.swiper-category .swiper-button-next',
+                prevEl: '.swiper-category .swiper-button-prev',
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        });
+        // card-section-set
+        const swiper2 = new Swiper('.swiper-card-item', {
+            // Optional parameters
+            direction: 'horizontal',
+            allowTouchMove: true,
+
+            pagination: {
+                el: ".swiper-card-item .swiper-pagination",
+                clickable: true,
+            },
+        });
+        // navigation-set
+        // const swiper3 = new Swiper('.swiper-navigation', {
+        //     // Optional parameters
+        //     direction: 'horizontal',
+        //     allowTouchMove: true,
+        //     slidesPerView: 7,
+        //     spaceBetween: 20,
+        // });
+    </script>
+    <!-- Leaflet -->
+    <script>
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    </script>
+</body>
+
+</html>
