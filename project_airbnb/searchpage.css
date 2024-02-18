@@ -453,8 +453,9 @@ html {
     width: 40%;
 }
 
-.search-results-map img {
-    width: 100%;
+.search-results-map #map {
+    height: 100%;
+    z-index: 1;
 }
 
 /* pagination-set */
