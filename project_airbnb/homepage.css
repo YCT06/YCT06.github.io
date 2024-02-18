@@ -285,7 +285,6 @@ html {
 
 .category-content {
     height: 65px;
-    
 }
 
 .category-content p {
@@ -783,6 +782,10 @@ html {
 
     .category {
         width: 100%;
+    }
+
+    .category-content {
+        height: 75px;
     }
 
     .card-section-set {
