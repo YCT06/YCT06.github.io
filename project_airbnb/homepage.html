@@ -19,7 +19,7 @@
     <div class="traveler-picks container">
         <div>
             <a href="">
-                <span>了解「旅客精選」，Airbnb 上最受喜愛的口碑房源</span>
+                <span>了解「旅客精選」，OpenRoom 上最受喜愛的口碑房源</span>
             </a>
         </div>
     </div>
@@ -64,8 +64,7 @@
                         </a>
                     </div>
                     <div class="information-area2 col-3">
-                        <div class="member-btn dropdown-toggle" id="member-button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <div class="member-btn dropdown-toggle" id="member-button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"
                                     role="presentation" focusable="false"
@@ -127,7 +126,8 @@
                         </div>
                     </div>
                     <div class="guests col-4">
-                        <div class="guests-content">
+                        <div class="guests-content dropdown-toggle" id="guests-button" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" aria-expanded="false">
                             <div>旅客</div>
                             <div>新增人數</div>
                         </div>
@@ -140,6 +140,67 @@
                                 </svg>
                             </div>
                         </span>
+                        <!-- 旅客人數下拉選單 -->
+                        <div class="dropdown-menu" aria-labelledby="guests-button">
+                            <div class="row row-cols-2 gy-3 gx-0 py-3 px-2 justify-content-between">
+                                <div>
+                                    <div>成人</div>
+                                    <div style="font-size: 0.75rem;">年滿 13 歲</div>
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn rounded-circle me-1 px-2 py-1 btn-count">
+                                        <img src="./reduce.svg" class="w-75 h-75 align-baseline" alt="reduce-icon">
+                                    </button>
+                                    <span class="align-middle">0</span>
+                                    <button type="button" class="btn rounded-circle ms-1 px-2 py-1 btn-count">
+                                        <img src="./add.svg" class="w-75 h-75 align-baseline" alt="add-icon">
+                                    </button>
+                                </div>
+                                <div>
+                                    <div>兒童</div>
+                                    <div style="font-size: 0.75rem;">2 - 12 歲</div>
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn rounded-circle me-1 px-2 py-1 btn-count">
+                                        <img src="./reduce.svg" class="w-75 h-75 align-baseline" alt="reduce-icon">
+                                    </button>
+                                    <span class="align-middle">0</span>
+                                    <button type="button" class="btn rounded-circle ms-1 px-2 py-1 btn-count">
+                                        <img src="./add.svg" class="w-75 h-75 align-baseline" alt="add-icon">
+                                    </button>
+                                </div>
+                                <div>
+                                    <div>嬰幼兒</div>
+                                    <div style="font-size: 0.75rem;">2 歲以下</div>
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn rounded-circle me-1 px-2 py-1 btn-count">
+                                        <img src="./reduce.svg" class="w-75 h-75 align-baseline" alt="reduce-icon">
+                                    </button>
+                                    <span class="align-middle">0</span>
+                                    <button type="button" class="btn rounded-circle ms-1 px-2 py-1 btn-count">
+                                        <img src="./add.svg" class="w-75 h-75 align-baseline" alt="add-icon">
+                                    </button>
+                                </div>
+                                <div>
+                                    <div>寵物</div>
+                                    <div class="text-decoration-underline" style="font-size: 0.75rem;">
+                                        會攜帶服務性動物嗎？</div>
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn rounded-circle me-1 px-2 py-1 btn-count">
+                                        <img src="./reduce.svg" class="w-75 h-75 align-baseline" alt="reduce-icon">
+                                    </button>
+                                    <span class="align-middle">0</span>
+                                    <button type="button" class="btn rounded-circle ms-1 px-2 py-1 btn-count">
+                                        <img src="./add.svg" class="w-75 h-75 align-baseline" alt="add-icon">
+                                    </button>
+                                </div>
+                                <div class="col-12" style="font-size: 0.75rem;">
+                                    此房源最多可供 2 人入住（不包括嬰幼兒）。不接受寵物入住。
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -328,16 +389,16 @@
                             <div class="swiper swiper-card-item">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-                                        <img src="./item img/HousePic001.webp" alt="">
+                                        <img src="https://picsum.photos/600/600/?random=10">
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="./item img/HousePic001.webp" alt="">
+                                        <img src="https://picsum.photos/600/600/?random=9">
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="./item img/HousePic001.webp" alt="">
+                                        <img src="https://picsum.photos/600/600/?random=8">
                                     </div>
                                     <div class="swiper-slide">
-                                        <img src="./item img/HousePic001.webp" alt="">
+                                        <img src="https://picsum.photos/600/600/?random=7">
                                     </div>
                                 </div>
                                 <div class="swiper-pagination"></div>
@@ -362,7 +423,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -383,7 +460,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -404,7 +497,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -425,7 +534,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -446,7 +571,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -467,7 +608,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -488,7 +645,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -509,7 +682,23 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -530,7 +719,97 @@
                     </div>
                     <a href="">
                         <div class="img-box">
-                            <img src="./item img/HousePic001.webp" alt="">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <div class="info-box">
+                            <p class="info-group">
+                                <span class="info-name">房間名稱</span>
+                                <span class="info-description">房間敘述</span>
+                                <span class="info-price">房間價格</span>
+                                <span class="info-rate">
+                                    <i class="fa-solid fa-star"></i>
+                                    4.0
+                                </span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 item-container">
+                    <div class="like-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <a href="">
+                        <div class="img-box">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <div class="info-box">
+                            <p class="info-group">
+                                <span class="info-name">房間名稱</span>
+                                <span class="info-description">房間敘述</span>
+                                <span class="info-price">房間價格</span>
+                                <span class="info-rate">
+                                    <i class="fa-solid fa-star"></i>
+                                    4.0
+                                </span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 item-container">
+                    <div class="like-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <a href="">
+                        <div class="img-box">
+                            <div class="swiper swiper-card-item">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=10">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=9">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=8">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="https://picsum.photos/600/600/?random=7">
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
                         <div class="info-box">
                             <p class="info-group">
@@ -549,7 +828,6 @@
         </section>
     </div>
 
-
     <div class="continue-browsing-set container">
         <div class="continue-browsing-txt">繼續瀏覽房間</div>
         <div class="continue-browsing-btn"><button type="button" class="btn btn-dark">顯示更多</button>
@@ -560,7 +838,15 @@
         <h4>為下一次度假尋找靈感</h4>
         <div class="navigation-area">
             <div class="navigation-title">
-                <div>swiper導覽列</div>
+                <div class="navigation-box">
+                    <button>熱門</button>
+                    <button>藝術與文化</button>
+                    <button>戶外</button>
+                    <button>山區</button>
+                    <button>海邊</button>
+                    <button>類型</button>
+                    <button>好玩新鮮事</button>
+                </div>
             </div>
             <div class="navigation-list">
                 <ul>
@@ -572,8 +858,26 @@
                     </li>
                     <li>
                         <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
+                            <span>貝納爾馬德納</span>
+                            <span>度假屋</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>馬貝拉</span>
+                            <span>度假屋</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>米納斯</span>
+                            <span>獨棟房屋</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>普雷斯科特</span>
+                            <span>小木屋</span>
                         </a>
                     </li>
                     <li>
@@ -584,8 +888,20 @@
                     </li>
                     <li>
                         <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
+                            <span>斯科茨代爾</span>
+                            <span>公寓</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>圖森</span>
+                            <span>度假屋</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span>賈斯珀</span>
+                            <span>小木屋</span>
                         </a>
                     </li>
                     <li>
@@ -596,44 +912,14 @@
                     </li>
                     <li>
                         <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
+                            <span>山景城</span>
+                            <span>獨棟房屋</span>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <span>坎莫爾</span>
-                            <span>寵物友善房源</span>
+                            <span>Devonport</span>
+                            <span>度假屋</span>
                         </a>
                     </li>
                 </ul>
@@ -653,7 +939,7 @@
                         <a href="#">因安全問題而需要協助</a>
                     </li>
                     <li>
-                        <a href="#">AirCover</a>
+                        <a href="#">OpenCover</a>
                     </li>
                     <li>
                         <a href="#">反歧視</a>
@@ -667,10 +953,10 @@
                 <p class="footer-item-title">出租房源和舉辦體驗</p>
                 <ul>
                     <li>
-                        <a href="#">在 Airbnb 上發布房源</a>
+                        <a href="#">在 OpenRoom 上發布房源</a>
                     </li>
                     <li>
-                        <a href="#">專為房東提供的 AirCover</a>
+                        <a href="#">專為房東提供的 OpenCover</a>
                     </li>
                     <li>
                         <a href="#">出租和舉辦體驗的相關資源</a>
@@ -684,10 +970,10 @@
                 </ul>
             </div>
             <div class="footer-item col-lg-4">
-                <p class="footer-item-title">Airbnb</p>
+                <p class="footer-item-title">OpenRoom</p>
                 <ul>
                     <li>
-                        <a href="#">Airbnb 新聞中心</a>
+                        <a href="#">OpenRoom 新聞中心</a>
                     </li>
                     <li>
                         <a href="#">全新功能</a>
@@ -706,7 +992,7 @@
         </div>
         <div class="footer-box2">
             <div class="footer-copyright">
-                <span>© 2024 Airbnb, Inc.</span>
+                <span>© 2024 OpenRoom, Inc.</span>
                 <span>·</span>
                 <a href="#">隱私</a>
                 <span>·</span>
@@ -770,7 +1056,6 @@
             </a>
         </div>
     </div>
-
 
     <!-- filter-button modal -->
     <div class="modal fade" id="filter-button" tabindex="-1" aria-hidden="true">
@@ -1156,8 +1441,6 @@
         </div>
     </div>
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
@@ -1191,8 +1474,17 @@
                 clickable: true,
             },
         });
-
+        // navigation-set
+        // const swiper3 = new Swiper('.swiper-navigation', {
+        //     // Optional parameters
+        //     direction: 'horizontal',
+        //     allowTouchMove: true,
+        //     slidesPerView: 7,
+        //     spaceBetween: 20,
+        // });
     </script>
+
+
     <!-- 用來開著modal用的 -->
     <!-- <script>
         window.onload = function () {
@@ -1200,6 +1492,8 @@
             registerLoginModal.show();
         }
     </script> -->
+
+
     <!-- flatpickr -->
     <script>
         flatpickr("input[type=datetime-local]", {

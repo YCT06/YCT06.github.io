@@ -26,7 +26,7 @@ html {
     border-bottom: 1px solid #ccc;
     position: sticky;
     top: 0px;
-    z-index: 3;
+    z-index: 4;
 }
 
 /* header-area1 */
@@ -118,8 +118,8 @@ html {
 }
 
 .search-area .search-bar {
-    width: 850px;
-    height: 65px;
+    width: 75%;
+    height: 66px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,7 +134,7 @@ html {
 }
 
 .check-in-content,
-.check-out-content  {
+.check-out-content {
     padding: 8px 24px;
     cursor: pointer;
 }
@@ -142,6 +142,10 @@ html {
 .guests-content {
     padding: 12.5px 24px;
     cursor: pointer;
+}
+
+.guests-content::after {
+    display: none;
 }
 
 .location-content:hover,
@@ -258,7 +262,7 @@ html {
     background-color: #FFFFFF;
     position: sticky;
     top: 168px;
-    z-index: 2;
+    z-index: 3;
 }
 
 .category {
@@ -420,7 +424,7 @@ html {
     position: absolute;
     left: auto;
     right: 20px;
-    z-index: 1;
+    z-index: 2;
     font-size: 24px;
     cursor: pointer;
     color: #fff;
@@ -499,6 +503,19 @@ html {
 .navigation-set {
     width: 100%;
     padding: 60px;
+    background-color: #F7F7F7;
+}
+
+.navigation-box {
+    width: 60%;
+    margin: 12px 0;
+}
+
+.navigation-box button {
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #717171;
     background-color: #F7F7F7;
 }
 
@@ -584,6 +601,7 @@ html {
     font-size: 14px;
     position: sticky;
     bottom: 0px;
+    z-index: 4;
 
 }
 
@@ -715,9 +733,14 @@ html {
     font-size: 14px;
 }
 
-
-
 /* swiper */
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+}
 
 @media (min-width: 768px) {
 
@@ -743,14 +766,14 @@ html {
         display: block;
         position: sticky;
         top: 0;
-        z-index: 3;
+        z-index: 4;
     }
 
     .category-set {
         position: sticky;
-        top: 80px;
+        top: 78px;
         padding: 0px 20px;
-        z-index: 2;
+        z-index: 3;
     }
 
     .category {
